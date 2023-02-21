@@ -5,12 +5,12 @@ import Imag from '../../src/components/Image';
 const Banner = ({ }) => {
   return (
     <div style={{ backgroundColor: 'green', flex: 1, flexDirection: 'row', display: 'flex' }}>
-      <div style={{ backgroundColor: 'yellow', flex: 1.2 }}>
+      <div style={{ backgroundColor: 'yellow', flex: 1.1,margin:0 }}>
         <Imag width={'100%'} />
       </div>
-      <div style={{ backgroundColor: 'pink', flex: 8.8, flexDirection: 'row', display: 'flex' }}>
+      <div style={{ backgroundColor: 'pink', flex: 8.9, flexDirection: 'row', display: 'flex' }}>
 
-        <div style={{ backgroundColor: 'black', width: '3%', height: '18%', marginLeft: 5 }}>
+        <div style={{ backgroundColor: 'black', width: '3%', height: '19%', marginLeft: 5 }}>
           <p style={{ textAlign: 'center', textDecoration: 'underline', fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.5vw' }}>
             ad
           </p>
