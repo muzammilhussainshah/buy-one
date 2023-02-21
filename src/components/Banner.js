@@ -11,7 +11,7 @@ const Banner = ({ }) => {
       <div style={{ backgroundColor: 'pink', flex: 8.8, flexDirection: 'row', display: 'flex' }}>
 
         <div style={{ backgroundColor: 'black', width: '3%', height: '18%', marginLeft: 5 }}>
-          <p style={{textAlign:'center', textDecoration: 'underline', fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.5vw' }}>
+          <p style={{ textAlign: 'center', textDecoration: 'underline', fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.5vw' }}>
             ad
           </p>
         </div>
