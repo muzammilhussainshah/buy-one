@@ -4,6 +4,7 @@ const Colors = {
     tabInactive: "#898989",
     tabActive: "#1d6fc0",
     gray: "#efefef",
+    bg:'#f3f3f3',
     lightGray: "#fbfbfb",
     tabBg: "#262626",
     white: "#ffffff",
