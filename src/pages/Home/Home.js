@@ -10,7 +10,7 @@ import Banner from '../../components/Banner'
 import Colors from "../../styles/Colors"
 import MyButton from '../../components/MyButton';
 import useDrag from '../../components/useDrage';
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { collection, query, addDoc, orderBy, limit, startAfter, getDocs } from "@firebase/firestore";
 
 import '../../App.css'
 import { db } from '../../firebase';
@@ -50,15 +50,35 @@ function Home() {
     let array = { title: `ASTM Level 3 成人三層衛生口罩`, ProductName: `(175mmx95mm) -藍色 30個獨立`, price: `$760.00`, oldPrice: `155人已購入`, id: '_' + Math.random().toString(36).substr(2, 9), }
     await addDoc(ref, { cartdata: array })
   }
-  useEffect(() => {
-    async function getMessages() {
-      const data = await fetchCartData(currentPage);
-      console.log(data, 'datadatadatadatadatadatadatadata')
-      // setMessages(data);
-    }
-    getMessages();
-  }, [currentPage]);
 
+  const [docs, setDocs] = useState([]);
+  const [lastVisible, setLastVisible] = useState(null);
+  const [loadMoreEnable, setloadMoreEnable] = useState(true);
+
+  useEffect(() => {
+    const q = query(
+      collection(db, 'cart'),
+      limit(10)
+    );
+    getDocs(q).then((snapshot) => {
+      setDocs(snapshot.docs);
+      setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
+    });
+
+  }, []);
+  const loadMore = () => {
+    const q = query(
+      collection(db, 'cart'),
+      startAfter(lastVisible),
+      limit(10)
+    );
+    getDocs(q).then((snapshot) => {
+      if (snapshot.docs.length < 10) { setloadMoreEnable(false) }
+      console.log(snapshot.docs, 'snapshotsnapshot')
+      setDocs([...docs, ...snapshot.docs]);
+      setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
+    });
+  };
 
   // useEffect(() => {
   //   // getCartData()
@@ -232,11 +252,6 @@ function Home() {
                   />
                 }
                   style={{ height: '7.5%', display: 'flex', alignItems: 'center', width: "100%", backgroundColor: Colors.lightGray, margin: '1px 0px', border: '0px', }}
-                  onClick={() => {
-
-                    setCurrentPage(currentPage + 1)
-                    addData()
-                  }}
                   label={<span style={{ flex: 1, fontSize: '1vw', textAlign: 'start', margin: '0vw 2vw', }}>{item}</span>} />
 
               )
@@ -288,18 +303,21 @@ function Home() {
                 onMouseUp={() => dragStop}
                 onMouseMove={handleDrag}
               >
-                {cartData?.length > 0 && cartData.map(({ id, title, ProductName, price, oldPrice }) => (
-                  <Card
-                    title={title}
-                    ProductName={ProductName}
-                    price={price}
-                    oldPrice={oldPrice}
-                    itemId={id}
-                    key={id}
-                    onClick={handleItemClick(id)}
-                    selected={id === selected}
-                  />
-                ))}
+                {docs?.length > 0 && docs.map((doc) => {
+                  const { id, title, ProductName, price, oldPrice } = doc.data().cartdata
+                  return (
+                    <Card
+                      title={title}
+                      ProductName={ProductName}
+                      price={price}
+                      oldPrice={oldPrice}
+                      itemId={id}
+                      key={id}
+                      onClick={handleItemClick(id)}
+                      selected={id === selected}
+                    />
+                  )
+                })}
               </ScrollMenu>
               {/* <Cart />
             <Cart />
@@ -347,7 +365,28 @@ function Home() {
 
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {cartData.map(() =>
+          {docs?.length > 0 && docs.map((doc) => {
+            const { id, title, ProductName, price, oldPrice } = doc.data().cartdata
+            return (
+              <Cart
+                title={title}
+                ProductName={ProductName}
+                price={price}
+                oldPrice={oldPrice}
+                disableBtn
+              // itemId={id}
+              // key={id}
+              // onClick={handleItemClick(id)}
+              // selected={id === selected}
+              />
+            )
+          })}
+          {loadMoreEnable &&
+            <MyButton
+              onClick={() => loadMore()}
+              label={'Load More'} />
+          }
+          {/* {docs?.map((doc) =>
           (<Cart
             title={`ASTM Level 3 成人三層衛生口罩`}
             ProductName={`(175mmx95mm) -藍色 30個獨立`}
@@ -355,7 +394,7 @@ function Home() {
             oldPrice={`155人已購入`}
             disableBtn />
           ))
-          }
+          } */}
         </div>
       </div>
       <div style={{ height: '8vw', backgroundColor: Colors.white, width: '100%', margin: '2vw 0vw 0vw 0vw', display: 'flex', fontSize: '1.4vw', padding: '0vw 5%' }}>

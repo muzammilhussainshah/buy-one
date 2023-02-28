@@ -1,7 +1,7 @@
 // import ActionTypes from '../constant/constant';
 
 // import axios from "axios";
-import { collection, getDocs, query, limit } from "firebase/firestore";
+import { collection, getDocs, query, limit, startAfter } from "@firebase/firestore";
 import { db } from "../../firebase";
 import ActionTypes from "../constant/constant";
 
@@ -25,17 +25,42 @@ export async function fetchCartData(pageNumber) {
     //         console.log(doc.id, " => ", doc.data());
     //     });
     // });
-    const myCollectionRef = collection(db, "cart");
+    //     const myCollectionRef = collection(db, "cart");
 
-    // Create a query with a limit of 10 documents
-    const myQuery = query(myCollectionRef, limit(10).offset((pageNumber - 1) * PAGE_SIZE));
+    //     // Create a query with a limit of 10 documents
+    //     const myQuery = query(myCollectionRef, limit(10), startAfter((pageNumber - 1) * PAGE_SIZE));
+    //     // Retrieve the documents matching the query
 
-    // Retrieve the documents matching the query
-    getDocs(myQuery).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-        });
-    });
+    //     let data = getDocs(myQuery)
+    //     // const querySnapshot = await query.get();
+    // console.log(data,'datadatadatadata')
+    // .then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // });
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 // export function $getChatroomDetail(
 //     id,
