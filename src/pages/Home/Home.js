@@ -15,6 +15,7 @@ import { collection, query, addDoc, orderBy, limit, startAfter, getDocs } from "
 import '../../App.css'
 import { db } from '../../firebase';
 import { fetchCartData } from '../../store/action/action';
+import { cartDummyData } from './data';
 
 const elemPrefix = "test";
 const getId = (index) => `${elemPrefix}${index}`;
@@ -29,7 +30,7 @@ function Home() {
   const [cartData, setcartData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [messages, setMessages] = useState([]);
-  console.log(cartData, 'cartDatacartDatacartDatacartData')
+  // console.log(cartData, 'cartDatacartDatacartDatacartData',cartDummyData)
 
   const { dragStart, dragStop, dragMove, dragging } = useDrag();
   const getCartData = async () => {
@@ -44,10 +45,10 @@ function Home() {
     setcartData(deepCopy)
     // console.log(deepCopy, 'deepCopydeepCopy')
   }
-  const addData = async () => {
-    // console.log('run')
+  const addData = async (data) => {
+    // console.log(data, 'run')
     const ref = await collection(db, "cart")
-    let array = { title: `ASTM Level 3 成人三層衛生口罩`, ProductName: `(175mmx95mm) -藍色 30個獨立`, price: `$760.00`, oldPrice: `155人已購入`, id: '_' + Math.random().toString(36).substr(2, 9), }
+    let array = data
     await addDoc(ref, { cartdata: array })
   }
 
@@ -58,11 +59,12 @@ function Home() {
   useEffect(() => {
     const q = query(
       collection(db, 'cart'),
-      limit(10)
+      limit(20)
     );
     getDocs(q).then((snapshot) => {
       setDocs(snapshot.docs);
       setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
+      if (snapshot.docs.length < 10) { setloadMoreEnable(false) }
     });
 
   }, []);
@@ -70,22 +72,25 @@ function Home() {
     const q = query(
       collection(db, 'cart'),
       startAfter(lastVisible),
-      limit(10)
+      limit(20)
     );
     getDocs(q).then((snapshot) => {
       if (snapshot.docs.length < 10) { setloadMoreEnable(false) }
-      console.log(snapshot.docs, 'snapshotsnapshot')
       setDocs([...docs, ...snapshot.docs]);
       setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
     });
   };
 
-  // useEffect(() => {
-  //   // getCartData()
-  //   const data = fetchCartData()
-  //   console.log(data, 'datadata')
-  //   // addData()
-  // }, [])
+  useEffect(() => {
+    // cartDummyData.map((item) => {
+    // addData(item)
+
+    // console.log(item, 'itemitemitemitem')
+    // })
+    // console.log(cartData, 'cartDatacartDatacartDatacartData', cartDummyData)
+
+
+  }, [])
 
 
   var settings = {
@@ -119,12 +124,12 @@ function Home() {
   };
 
 
-  const Cart = ({ disableBtn, title, ProductName, price, oldPrice }) => {
+  const Cart = ({ disableBtn, icon, title, ProductName, price, oldPrice }) => {
     return (
       <div
         style={{ height: '20vw', width: '15vw', display: "flex", flexDirection: 'column', margin: '1.5%' }}>
-        <div style={{ display: "flex", flex: 7, }}>
-          <img src={`https://s40424.pcdn.co/in/wp-content/uploads/2022/04/March_How-to-become-Product-Manager-1-1140x800.jpg`} alt="My Image" style={{ height: '100%', width: "100%", }} />
+        <div style={{ display: "flex", flex: 7, overflow: 'hidden' }}>
+          <img src={icon} alt="My Image" style={{ height: '100%', width: "100%", }} />
         </div>
         <div style={{ display: "flex", flexDirection: 'column', flex: 3, }}>
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
@@ -304,12 +309,13 @@ function Home() {
                 onMouseMove={handleDrag}
               >
                 {docs?.length > 0 && docs.map((doc) => {
-                  const { id, title, ProductName, price, oldPrice } = doc.data().cartdata
+                  const { id, icon, title, ProductName, price, oldPrice } = doc.data().cartdata
                   return (
                     <Card
                       title={title}
                       ProductName={ProductName}
                       price={price}
+                      icon={icon}
                       oldPrice={oldPrice}
                       itemId={id}
                       key={id}
@@ -317,7 +323,8 @@ function Home() {
                       selected={id === selected}
                     />
                   )
-                })}
+                })
+                }
               </ScrollMenu>
               {/* <Cart />
             <Cart />
@@ -364,12 +371,14 @@ function Home() {
 
 
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', padding: '.3vw' }}>
           {docs?.length > 0 && docs.map((doc) => {
-            const { id, title, ProductName, price, oldPrice } = doc.data().cartdata
+            const { id, icon, title, ProductName, price, oldPrice } = doc.data().cartdata
+            // console.log(doc.data().cartdata)
             return (
               <Cart
                 title={title}
+                icon={icon}
                 ProductName={ProductName}
                 price={price}
                 oldPrice={oldPrice}
@@ -383,6 +392,7 @@ function Home() {
           })}
           {loadMoreEnable &&
             <MyButton
+              style={{ backgroundColor: Colors.gray, color: Colors.primary, border: '0px', padding: '.5vw', margin: 'auto auto', fontSize: '1.5vw', maxHeight: '3vw' }}
               onClick={() => loadMore()}
               label={'Load More'} />
           }
@@ -405,15 +415,15 @@ function Home() {
           <img src={require('../../assets/2.png')} alt="My Image" style={{ height: '5vw', width: "20%", objectFit: 'contain' }} />
         </div>
         <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
-          <img src={require('../../assets/Repeat Grid 3.png')} alt="My Image" style={{ display: 'flex', flex: 1, objectFit: 'contain' }} />
+          <img src={require('../../assets/Repeat Grid 3.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
           {/* <img src={`https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/800px-Mastercard_2019_logo.svg.png`} alt="My Image" style={{ height: '4vw', width: "15%" , objectFit: 'contain' }} /> */}
-          <img src={require('../../assets/E2-OC1.png')} alt="My Image" style={{ display: 'flex', flex: 1, objectFit: 'contain' }} />
+          <img src={require('../../assets/E2-OC1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
           {/* <img src={`https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Logos.svg/1200px-Logos.svg.png`} alt="My Image" style={{ height: '4vw', width: "15%" , objectFit: 'contain' }} /> */}
-          <img src={require('../../assets/E2-OC1-1.png')} alt="My Image" style={{ display: 'flex', flex: 1, objectFit: 'contain' }} />
-          <img src={require('../../assets/E2-UN1.png')} alt="My Image" style={{ display: 'flex', flex: 1, objectFit: 'contain' }} />
-          <img src={require('../../assets/E2-visa1.png')} alt="My Image" style={{ display: 'flex', flex: 1, objectFit: 'contain' }} />
-          <img src={require('../../assets/E2-VS-1.png')} alt="My Image" style={{ display: 'flex', flex: 1, objectFit: 'contain' }} />
-          <img src={require('../../assets/E2-AE1.png')} alt="My Image" style={{ display: 'flex', flex: 1, objectFit: 'contain' }} />
+          <img src={require('../../assets/E2-OC1-1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
+          <img src={require('../../assets/E2-UN1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
+          <img src={require('../../assets/E2-visa1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
+          <img src={require('../../assets/E2-VS-1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
+          <img src={require('../../assets/E2-AE1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
           {/* <img src={`https://www.boredpanda.com/blog/wp-content/uploads/2020/06/Artist-shows-alternative-versions-of-famous-logos-in-different-styles-5ed4ac823b564__880.jpg`} alt="My Image" style={{ height: '4vw', width: "15%", objectFit: 'contain' }} /> */}
           {/* <img src={`https://bestlifeonline.com/wp-content/uploads/sites/3/2018/09/tostitos.jpg?quality=82&strip=all`} alt="My Image" style={{ height: '4vw', width: "15%", objectFit: 'contain' }} /> */}
         </div>
