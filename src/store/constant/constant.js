@@ -1,7 +1,5 @@
 const ActionTypes = {
-     TRENDINGMOVIES: 'TRENDINGMOVIES',  
-     TRENDINGTVSHOWS: 'TRENDINGTVSHOWS',  
-     VIDEODETAIL: 'VIDEODETAIL',  
+     CARTS: 'CARTS',
 }
 
 export default ActionTypes;

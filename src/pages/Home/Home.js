@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextField } from '@mui/material';
 import Slider from 'react-slick';
 
@@ -10,8 +10,11 @@ import Banner from '../../components/Banner'
 import Colors from "../../styles/Colors"
 import MyButton from '../../components/MyButton';
 import useDrag from '../../components/useDrage';
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 import '../../App.css'
+import { db } from '../../firebase';
+import { fetchCartData } from '../../store/action/action';
 
 const elemPrefix = "test";
 const getId = (index) => `${elemPrefix}${index}`;
@@ -23,7 +26,48 @@ const getItems = () =>
 
 function Home() {
   const [selected, setSelected] = useState("");
+  const [cartData, setcartData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [messages, setMessages] = useState([]);
+  console.log(cartData, 'cartDatacartDatacartDatacartData')
+
   const { dragStart, dragStop, dragMove, dragging } = useDrag();
+  const getCartData = async () => {
+    let deepCopy = JSON.parse(JSON.stringify(cartData));
+    const ref = await getDocs(collection(db, "cart"));
+    // console.log(ref, 'ref ref ref ')
+    ref.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+      deepCopy.push(doc.data().cartdata)
+    });
+
+    setcartData(deepCopy)
+    // console.log(deepCopy, 'deepCopydeepCopy')
+  }
+  const addData = async () => {
+    // console.log('run')
+    const ref = await collection(db, "cart")
+    let array = { title: `ASTM Level 3 成人三層衛生口罩`, ProductName: `(175mmx95mm) -藍色 30個獨立`, price: `$760.00`, oldPrice: `155人已購入`, id: '_' + Math.random().toString(36).substr(2, 9), }
+    await addDoc(ref, { cartdata: array })
+  }
+  useEffect(() => {
+    async function getMessages() {
+      const data = await fetchCartData(currentPage);
+      console.log(data, 'datadatadatadatadatadatadatadata')
+      // setMessages(data);
+    }
+    getMessages();
+  }, [currentPage]);
+
+
+  // useEffect(() => {
+  //   // getCartData()
+  //   const data = fetchCartData()
+  //   console.log(data, 'datadata')
+  //   // addData()
+  // }, [])
+
+
   var settings = {
     arrows: false,
     focusOnSelect: true,
@@ -36,7 +80,7 @@ function Home() {
   };
 
   const [items] = React.useState(getItems);
-
+  // console.log(items, 'itemsitemsitems', cartData)
   // NOTE: for drag by mouse
   const handleDrag = ({ scrollContainer }) => (
     ev
@@ -188,6 +232,11 @@ function Home() {
                   />
                 }
                   style={{ height: '7.5%', display: 'flex', alignItems: 'center', width: "100%", backgroundColor: Colors.lightGray, margin: '1px 0px', border: '0px', }}
+                  onClick={() => {
+
+                    setCurrentPage(currentPage + 1)
+                    addData()
+                  }}
                   label={<span style={{ flex: 1, fontSize: '1vw', textAlign: 'start', margin: '0vw 2vw', }}>{item}</span>} />
 
               )
@@ -239,24 +288,17 @@ function Home() {
                 onMouseUp={() => dragStop}
                 onMouseMove={handleDrag}
               >
-                {items.map(({ id }) => (
+                {cartData?.length > 0 && cartData.map(({ id, title, ProductName, price, oldPrice }) => (
                   <Card
-                    title={`ASTM Level 3 成人三層衛生口罩`}
-                    ProductName={`(175mmx95mm) -藍色 30個獨立`}
-                    price={`$760.00`}
-                    oldPrice={`155人已購入`}
-                    itemId={id} // NOTE: itemId is required for track items
+                    title={title}
+                    ProductName={ProductName}
+                    price={price}
+                    oldPrice={oldPrice}
+                    itemId={id}
                     key={id}
                     onClick={handleItemClick(id)}
                     selected={id === selected}
                   />
-                  // < Card
-                  //   title={id}
-                  //   itemId={id} // NOTE: itemId is required for track items
-                  //   key={id}
-                  //   onClick={handleItemClick(id)}
-                  //   selected={id === selected}
-                  // />
                 ))}
               </ScrollMenu>
               {/* <Cart />
@@ -305,7 +347,7 @@ function Home() {
 
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map(() =>
+          {cartData.map(() =>
           (<Cart
             title={`ASTM Level 3 成人三層衛生口罩`}
             ProductName={`(175mmx95mm) -藍色 30個獨立`}

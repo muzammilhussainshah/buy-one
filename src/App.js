@@ -1,9 +1,10 @@
 // import './../../App.css';
+import { useEffect } from 'react';
 import Home from '../src/pages/Home/Home';
 
-function App() {
+function App() { 
   return (
-    <Home />
+    <Home /> 
   );
 }
 

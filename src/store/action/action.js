@@ -1,72 +1,114 @@
 // import ActionTypes from '../constant/constant';
 
-import axios from "axios";
+// import axios from "axios";
+import { collection, getDocs, query, limit } from "firebase/firestore";
+import { db } from "../../firebase";
 import ActionTypes from "../constant/constant";
 
-const TMDB_API_KEY = '54ed8b21fd2d7a380faaa388189b382f';
 
-export const getTVtime = (date) => {
-    return async (dispatch) => {
-        try {
-            let response = await getResponse(`https://api.themoviedb.org/3/movie/upcoming?api_key=${TMDB_API_KEY}&language=en-US&page=1&include_adult=false&append_to_response=videos`)
-            dispatch({ type: ActionTypes.TRENDINGMOVIES, payload: response?.data?.results });
-        }
-        catch (err) {
-            console.log(err, 'error')
-        }
-    }
-}
-export const getTrendingTvShows = (date) => {
-    return async (dispatch) => {
-        try {
-            let response = await getResponse(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${TMDB_API_KEY}&language=en-US&page=1&include_adult=false&append_to_response=videos`)
-            dispatch({ type: ActionTypes.TRENDINGTVSHOWS, payload: response?.data?.results });
-        }
-        catch (err) {
-            console.log(err, 'error')
-        }
-    }
-}
-export const getMovieDetails = (movieId) => {
-    return async (dispatch) => {
-        try {
-            let response = await getResponse(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}&language=en-US&page=1&include_adult=false&append_to_response=videos,credits`)
-            dispatch({ type: ActionTypes.VIDEODETAIL, payload: response?.data });
-        }
-        catch (err) {
-            console.log(err, 'error')
-        }
-    }
-} 
 
-export const getTvShowsDetails = (tvShowId) => {
-    return async (dispatch) => {
-        try {
-            let response = await getResponse(`https://api.themoviedb.org/3/tv/${tvShowId}?api_key=${TMDB_API_KEY}&language=en-US&page=1&include_adult=false&append_to_response=videos,credits`)
-            console.log(response, 'getTvShowsDetails')
-            dispatch({ type: ActionTypes.VIDEODETAIL, payload: response?.data });
-            return response?.data 
-        }
-        catch (err) {
-            console.log(err, 'error')
-        }
-    }
+
+export async function fetchCartData(pageNumber) {
+    const PAGE_SIZE = 10; // number of messages per page
+    // const messagesRef = db.collection('cart');
+    // const messagesRef = await collection(db, "cart");
+
+    // const query = messagesRef.limit(PAGE_SIZE).offset((pageNumber - 1) * PAGE_SIZE);
+    // const querySnapshot = await query.get();
+    // const cartData = querySnapshot.docs.map((doc) => doc.data());
+    // return cartData;
+    // const collectionRef = getDocs(collection(db, 'cart'))
+
+    // // Limit to the first 10 documents in the collection
+    // collectionRef.then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // });
+    const myCollectionRef = collection(db, "cart");
+
+    // Create a query with a limit of 10 documents
+    const myQuery = query(myCollectionRef, limit(10).offset((pageNumber - 1) * PAGE_SIZE));
+
+    // Retrieve the documents matching the query
+    getDocs(myQuery).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+        });
+    });
 }
- 
-const getResponse = async (URL) => {
-    try {
-        const option = {
-            method: 'GET',
-            url: URL,
-            headers: {
-                'X-RapidAPI-Key': '333a6e9d17msh885d0fa8107a10bp149775jsn8302b5c9acf2',
-                'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-            },
-        };
-        var resp = await axios(option);
-        return resp
-    }
-    catch (err) {
-        console.log(err, 'errerrerrerr')
-    }
-}
+// export function $getChatroomDetail(
+//     id,
+//     chatRoomLastMessage,
+//     allMessages
+// ) {
+//     return async (dispatch) => {
+//         return new Promise(async (resolve, reject) => {
+//             const messagesRef = firestore()
+//                 .collection('chatrooms')
+//                 .doc(id)
+//                 .collection('messages');
+//             try {
+//                 let messagesQuerySnap = null;
+//                 if (chatRoomLastMessage) {
+//                     const lastMessageDoc = await messagesRef
+//                         .doc(chatRoomLastMessage)
+//                         .get();
+
+//                     messagesQuerySnap = await messagesRef
+//                         .where('type', 'in', ['default', 'loyalty'])
+//                         .orderBy('sentAt', 'desc')
+//                         .startAfter(lastMessageDoc)
+//                         .limit(LOAD_SIZE_MESSAGES)
+//                         .get();
+//                 } else {
+//                     messagesQuerySnap = await messagesRef
+//                         .where('type', 'in', ['default', 'loyalty'])
+//                         .orderBy('sentAt', 'desc')
+//                         .limit(LOAD_SIZE_MESSAGES)
+//                         .get();
+//                 }
+
+//                 let messages = [];
+//                 for (
+//                     let index = 0;
+//                     index < messagesQuerySnap.docs.length;
+//                     index++
+//                 ) {
+//                     let oneMessageDoc = messagesQuerySnap.docs[index];
+//                     messages.push({
+//                         id: oneMessageDoc.id,
+//                         ...oneMessageDoc.data()
+//                     });
+
+//                     // translate remaining messages
+//                     if (index + 1 === messagesQuerySnap.docs.length) {
+//                         dispatch($translateMessages());
+//                     }
+//                 }
+//                 if (allMessages) {
+//                     allMessages = [...allMessages, ...messages];
+//                 } else {
+//                     allMessages = messages;
+//                 }
+
+//                 dispatch({
+//                     type: CHAT_ROOM_MESSAGES,
+//                     payload: {
+//                         messages: allMessages,
+//                         chatRoomLastMessage:
+//                             messagesQuerySnap.docs.length > 0
+//                                 ? messagesQuerySnap.docs[
+//                                     messagesQuerySnap.docs.length - 1
+//                                 ]?.id
+//                                 : null
+//                     }
+//                 });
+//                 resolve(allMessages);
+//             } catch (error) {
+//                 console.log('$getChatroomDetail - ', error);
+//                 reject(error);
+//             }
+//         });
+//     };
+// }
