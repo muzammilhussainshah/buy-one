@@ -5,19 +5,20 @@ import Colors from '../styles/Colors';
 
 const Banner = ({ }) => {
   return (
-    <div style={{   flex: 1, flexDirection: 'row', display: 'flex' }}>
-      <div style={{ backgroundColor: 'yellow', flex: 1.1,margin:0 }}>
+    <div style={{ backgroundColor: 'red', height: '10vw', flexDirection: 'row', display: 'flex' }}>
+      <div style={{   flex: 1.1, margin: 0 }}>
+        {/* <img src='/images/logo.jpg' alt="My Image" style={'100%')} /> */}
         <Imag width={'100%'} />
       </div>
-      <div style={{ backgroundColor:Colors.bg, flex: 8.9, flexDirection: 'row', display: 'flex' }}>
+      <div style={{ backgroundColor: Colors.bg, flex: 8.9, flexDirection: 'row', display: 'flex' }}>
 
-        <div style={{ backgroundColor: 'black', width: '3%', height: '19%', marginLeft: 5 }}>
-          <p style={{ textAlign: 'center', textDecoration: 'underline', fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.5vw' }}>
+        <div style={{ margin: '.1vw' }}>
+          <p style={{ textAlign: 'center', backgroundColor: 'black', textDecoration: 'underline', fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.5vw' }}>
             ad
           </p>
         </div>
-        <div style={{   flex: 1, display: 'flex', justifyContent: "center", alignItems: 'center' }}>
-          <p style={{   fontSize: '1.5vw' }}>
+        <div style={{ flex: 1, display: 'flex', justifyContent: "center", alignItems: 'center' }}>
+          <p style={{ fontSize: '1.5vw' }}>
             ADVERTISING BANNER
           </p>
         </div>

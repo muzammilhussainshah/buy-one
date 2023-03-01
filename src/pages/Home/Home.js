@@ -58,7 +58,7 @@ function Home() {
 
   useEffect(() => {
     // cartDummyData.map((item) => {
-      // addData(item)
+    // addData(item)
     // })
 
 
@@ -336,12 +336,18 @@ function Home() {
       <div style={{
         height: '13vw', width: "95%",
         margin: '0px auto 0vw auto',
-      }}>
-        <Slider {...settings} style={{ display: 'flex', justifyContent: "cemter", alignItems: 'center' }} pagination={false}>
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: "center",
+        //  alignItems: 'center'
+      }}
+      >
+        <Slider {...settings} pagination={false}>
           {[0, 0, 0, 0, 0, 0].map(() => {
             return (
-              <div >
-                <div style={{ height: '11vw', backgroundColor: Colors.gray, width: '34vw', margin: '3% 1vw 0px 0px', display: 'flex', fontSize: '1.4vw' }}>
+              <div
+              >
+                <div style={{ height: '11vw', backgroundColor: Colors.gray, width: '34vw', display: 'flex', fontSize: '1.4vw' }}>
                   <div style={{ backgroundColor: 'black', padding: '0px 0.1vw', height: '2vw' }}>
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.5vw' }}>
                       ad

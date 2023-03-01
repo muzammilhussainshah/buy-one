@@ -39,7 +39,7 @@ export function Card({ disableBtn,icon, itemId, price, title, oldPrice, ProductN
           {!disableBtn &&
             <div style={{ display: 'flex', flex: 1, justifyContent: "center", alignItems: 'flex-end' }}>
               <MyButton label={
-                <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1.1vw' }}
+                <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1vw' }}
                 >
 
                   Add to Cart</span>} style={{ backgroundColor: Colors.gray, width: '100%', borderWidth: '0px', height: "55%" }} />

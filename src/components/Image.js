@@ -5,7 +5,7 @@ import { logoImg } from './styles';
 
 const Imag = ({ width }) => {
     return (
-            <img src='/images/logo.jpg' alt="My Image" style={logoImg(width)} />
+            <img src={require('../assets/logo.JPG')} alt="My Image" style={logoImg(width)} />
     );
 };
 export default Imag;
