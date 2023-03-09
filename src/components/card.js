@@ -4,24 +4,25 @@ import { VisibilityContext } from "react-horizontal-scrolling-menu";
 import Colors from "../styles/Colors";
 import MyButton from "./MyButton";
 import '../App.css'
-export function Card({ disableBtn,icon, itemId, price, title, oldPrice, ProductName, onClick, selected }) {
+export function Card({ disableBtn, icon, itemId, price, title, oldPrice, ProductName, onClick, selected }) {
   const visibility = React.useContext(VisibilityContext);
 
   const visible = visibility.isItemVisible(itemId);
 
   return (
     <div
+      className="cartHover"
       onClick={() => onClick && onClick()}
       role="button"
-      style={{ height: '25vw', width: '16vw', display: "flex", flexDirection: 'column', margin: '1.5vw' }}>
-      <div style={{ height: '100%', width: '26%',  position: "absolute " }}>
+      style={{ height: '24vw', width: '15vw',padding:'.5vw',borderRadius:'1vw', display: "flex", flexDirection: 'column', margin: '1.5vw' }}>
+      <div style={{ height: '100%', width: '26%', position: "absolute " }}>
         <div style={{ color: 'transparent' }}>
           {JSON.stringify(visible)}
         </div>
         <div style={{ color: 'transparent' }}>
           {JSON.stringify(!!selected)}</div>
       </div>
-      <div style={{ display: "flex", flex: 7, overflow:"hidden"}}>
+      <div style={{ display: "flex", flex: 7, overflow: "hidden" }}>
         <img src={icon} alt="My Image" style={{ height: '100%', width: "100%", }} />
       </div>
       <div style={{ display: "flex", flexDirection: 'column', flex: 3, }}>

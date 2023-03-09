@@ -122,7 +122,8 @@ function Home() {
   const Cart = ({ disableBtn, icon, title, ProductName, price, oldPrice }) => {
     return (
       <div
-        style={{ height: '20vw', width: '15vw', display: "flex", flexDirection: 'column', margin: '1.5%' }}>
+      className="cartHover"
+      style={{ height: '19vw', width: '14vw',padding:'.5vw',borderRadius:'1vw',  display: "flex", flexDirection: 'column', margin: '2%' }}>
         <div style={{ display: "flex", flex: 7, overflow: 'hidden' }}>
           <img src={icon} alt="My Image" style={{ height: '100%', width: "100%", }} />
         </div>
