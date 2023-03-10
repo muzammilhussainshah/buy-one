@@ -48,34 +48,7 @@ button :hover {
 .sticky {
   position: sticky;
   top: 0;
+  z-index: 2;
   background-color: white;
   overflow: hidden;
-}
-.slider-container {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-.slider-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
-}
-
-.item {
-  flex: 0 0 auto;
-  width: 200px;
-  height: 150px;
-  margin-right: 10px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  scroll-snap-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
 }
