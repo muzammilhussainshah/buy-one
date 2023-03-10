@@ -30,6 +30,7 @@ body::-webkit-scrollbar {
 button :hover {
   cursor: pointer;
 }
+
 /* .cartHover:hover{
   background-color: red;
 
@@ -43,12 +44,28 @@ button :hover {
 }
 
 .cartHover:hover {
-  box-shadow: 0 0.55vw 1.1vw 0 rgba(0,0,0,0.2);
+  box-shadow: 0 0.55vw 1.1vw 0 rgba(0, 0, 0, 0.2);
 }
+
 .sticky {
   position: sticky;
   top: 0;
   z-index: 2;
   background-color: white;
   overflow: hidden;
+}
+
+.buttonsHover:hover {
+  color: #2e58a6 !important;
+}
+
+.searchButtonsHover {
+  border: 1px solid #2e58a6 !important;
+  transition: .2s;
+}
+
+.searchButtonsHover:hover {
+  color: #2e58a6 !important;
+  background-color: white !important;
+  cursor: pointer;
 }

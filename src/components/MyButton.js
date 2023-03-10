@@ -3,7 +3,9 @@ import '../App.css'
 function MyButton({ label, onClick, style, icon }) {
 
   return (
-    <button onClick={onClick} style={style}>
+    <button
+    className='buttonsHover'
+    onClick={onClick} style={style}>
       {label}
       {icon}
     </button>
