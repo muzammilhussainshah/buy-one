@@ -18,6 +18,7 @@
     "react-draggable": "^4.4.5",
     "react-fast-image": "2.2.7",
     "react-horizontal-scrolling-menu": "^3.2.5",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-lazyload": "^3.2.0",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",

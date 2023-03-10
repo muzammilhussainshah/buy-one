@@ -16,6 +16,8 @@ import '../../App.css'
 import { db } from '../../firebase';
 import { fetchCartData } from '../../store/action/action';
 import { cartDummyData } from './data';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import LazyLoad from 'react-lazyload';
 
 const elemPrefix = "test";
 const getId = (index) => `${elemPrefix}${index}`;
@@ -399,10 +401,44 @@ function Home() {
 
 
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', padding: '.5vw' }}>
-          {docs?.length > 0 && docs.map((doc, index) => {
+        <div >
+          <InfiniteScroll
+            dataLength={docs.length}
+            next={loadMore}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+            style={{ display: 'flex', flexWrap: 'wrap', padding: '.5vw' }}
+          >
+            {docs.map((doc, index) => {
+
+              const { id, icon, title, ProductName, price, oldPrice } = doc.data().cartdata
+              return (
+                <>
+                  <Cart
+                    title={title}
+                    icon={icon}
+                    ProductName={ProductName}
+                    price={price}
+                    oldPrice={oldPrice}
+                    disableBtn
+                  />
+                  {/* {index == docs?.length - 1 && loadMoreEnable &&
+                    <Button
+                      disableElevation
+                      onClick={loadMore}
+                      sx={{
+                        boxShadow: `0 ${0.15}vw ${0.15}vw #888`,
+                        backgroundColor: Colors.white, color: Colors.primary, border: `.5px solid ${Colors.primary}`, borderRadius: '.5vw', padding: '.8vw', margin: 'auto auto', fontSize: '1vw', maxHeight: '3vw'
+                      }}>
+                      Load More
+                    </Button>
+                  } */}
+                </>
+              )
+            })}
+          </InfiniteScroll>
+          {/* {docs?.length > 0 && docs.map((doc, index) => {
             const { id, icon, title, ProductName, price, oldPrice } = doc.data().cartdata
-            // console.log(doc.data().cartdata)
             return (
               <>
                 <Cart
@@ -415,10 +451,7 @@ function Home() {
                 />
                 {index == docs?.length - 1 && loadMoreEnable &&
                   <Button
-                    // disableFocusRipple
-                    // disableRipple
                     disableElevation
-                    // disableTouchRipple
                     onClick={loadMore}
                     sx={{
                       boxShadow: `0 ${0.15}vw ${0.15}vw #888`,
@@ -426,17 +459,10 @@ function Home() {
                     }}>
                     Load More
                   </Button>
-                  // < MyButton
-                  //   style={{
-                  //     boxShadow: `0 ${0.15}vw ${0.15}vw #888`,
-                  //     backgroundColor: Colors.gray, color: Colors.primary, border: `.5px solid ${Colors.primary}`, borderRadius: '.5vw', padding: '.8vw', margin: 'auto auto', fontSize: '1.2vw', maxHeight: '3vw'
-                  //   }}
-                  //   onClick={() => loadMore()}
-                  //   label={'Load More'} />
                 }
               </>
             )
-          })}
+          })} */}
         </div>
       </div>
       <div style={{ height: '8vw', backgroundColor: Colors.white, width: '100%', margin: '2vw 0vw 0vw 0vw', display: 'flex', fontSize: '1.4vw', padding: '0vw 5%' }}>
