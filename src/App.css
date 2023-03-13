@@ -2,8 +2,20 @@ body {
   /* overflow-y: scroll; */
   /* scrollbar-width: none; */
   /* Hide scrollbar for Firefox */
-  /* -ms-overflow-style: none; */
   /* Hide scrollbar for IE and Edge */
+}
+
+.scrollBar{
+
+  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.infinite-scroll-component {
+  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

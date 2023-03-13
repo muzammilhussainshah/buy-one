@@ -1,71 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { Button, TextField } from '@mui/material';
+import React, {
+  useEffect,
+  useState
+} from 'react';
+
 import Slider from 'react-slick';
-
-import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
+import { TextField } from '@mui/material';
+import {
+  collection,
+  query,
+  addDoc,
+  limit,
+  startAfter,
+  getDocs
+} from "@firebase/firestore";
 
-import { Card } from '../../components/card';
 import Banner from '../../components/Banner'
 import Colors from "../../styles/Colors"
 import MyButton from '../../components/MyButton';
 import useDrag from '../../components/useDrage';
-import { collection, query, addDoc, orderBy, limit, startAfter, getDocs } from "@firebase/firestore";
-
-import '../../App.css'
+import { Card } from '../../components/card';
 import { db } from '../../firebase';
-import { fetchCartData } from '../../store/action/action';
-import { cartDummyData } from './data';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import LazyLoad from 'react-lazyload';
+import '../../App.css'
 
-const elemPrefix = "test";
-const getId = (index) => `${elemPrefix}${index}`;
-
-const getItems = () =>
-  Array(20)
-    .fill(0)
-    .map((_, ind) => ({ id: getId(ind) }));
 
 function Home() {
   const [selected, setSelected] = useState("");
-  const [cartData, setcartData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [messages, setMessages] = useState([]);
-  // console.log(cartData, 'cartDatacartDatacartDatacartData',cartDummyData)
-
+  const [docs, setDocs] = useState([]);
+  const [lastVisible, setLastVisible] = useState(null);
+  const [isSticky, setSticky] = useState(false);
   const { dragStart, dragStop, dragMove, dragging } = useDrag();
-  const getCartData = async () => {
-    let deepCopy = JSON.parse(JSON.stringify(cartData));
-    const ref = await getDocs(collection(db, "cart"));
-    // console.log(ref, 'ref ref ref ')
-    ref.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-      deepCopy.push(doc.data().cartdata)
-    });
 
-    setcartData(deepCopy)
-    // console.log(deepCopy, 'deepCopydeepCopy')
-  }
+  // if we wana add more data to db so we can use this function 
   const addData = async (data) => {
-    // console.log(data, 'run')
     const ref = await collection(db, "cart")
     let array = data
     await addDoc(ref, { cartdata: array })
   }
+  // if we wana add more data to db so we can use this function 
 
-  const [docs, setDocs] = useState([]);
-  const [lastVisible, setLastVisible] = useState(null);
-  const [loadMoreEnable, setloadMoreEnable] = useState(true);
-  const [isSticky, setSticky] = useState(false);
 
   useEffect(() => {
-    // cartDummyData.map((item) => {
-    // addData(item)
-    // })
-
-
-
     const q = query(
       collection(db, 'cart'),
       limit(20)
@@ -73,9 +50,7 @@ function Home() {
     getDocs(q).then((snapshot) => {
       setDocs(snapshot.docs);
       setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
-      if (snapshot.docs.length < 10) { setloadMoreEnable(false) }
     });
-
     window.addEventListener("scroll", () => {
       if (window.scrollY > 150) {
         setSticky(true);
@@ -84,6 +59,7 @@ function Home() {
       }
     });
   }, []);
+
   const loadMore = () => {
     const q = query(
       collection(db, 'cart'),
@@ -91,7 +67,6 @@ function Home() {
       limit(20)
     );
     getDocs(q).then((snapshot) => {
-      if (snapshot.docs.length < 10) { setloadMoreEnable(false) }
       setDocs([...docs, ...snapshot.docs]);
       setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
     });
@@ -109,8 +84,6 @@ function Home() {
 
   };
 
-  const [items] = React.useState(getItems);
-  // console.log(items, 'itemsitemsitems', cartData)
   // NOTE: for drag by mouse
   const handleDrag = ({ scrollContainer }) => (
     ev
@@ -257,29 +230,22 @@ function Home() {
             return (
               <MyButton
                 style={{ fontSize: '0.9vw', border: '0px', }}
-                // style={searchBtns(0)}
                 label={<span style={{ margin: 0 }}>{item}</span>} />
-
             )
           })}
           <MyButton
-            // style={searchBtns('0vw 1vw')}
             style={{ backgroundColor: 'transparent', fontSize: '0.9vw', border: '0px', margin: '0px 2vw' }}
-
             label="登 " />
         </div>
       </div>
       <div
-        // style={specialProductContainer}
         style={{ height: '35vw', width: '95%', margin: '0px auto', backgroundColor: Colors.white, display: 'flex' }}
       >
         <div
           style={{ display: 'flex', flexDirection: 'column', flex: 1.5, minWidth: "12vw" }}
-
         >
           <h3 style={{ margin: '5% 2vw', fontSize: '1.4vw' }}>{`分類`}</h3>
           <div style={{ display: 'flex', flexDirection: "column", flex: 1, justifyContent: "center" }}>
-
             {['飲品、即沖飲品', '酒類、酒精飲品', '美食預訂/到會', '美食預訂/到會', '罐頭、醃製食品', '調味料、醬料', '零食、餅乾', '甜品', '烘焙', '乾貨', '嬰幼兒奶粉'].map((item, index) => {
               return (
                 <MyButton icon={
@@ -289,7 +255,6 @@ function Home() {
                 }
                   style={{ height: '7.5%', display: 'flex', alignItems: 'center', width: "100%", backgroundColor: Colors.lightGray, margin: '1px 0px', border: '0px', }}
                   label={<span style={{ flex: 1, fontSize: '1vw', textAlign: 'start', margin: '0vw 2vw', }}>{item}</span>} />
-
               )
             })}
 
@@ -297,47 +262,22 @@ function Home() {
         </div>
         <div
           style={{ display: 'flex', flexDirection: 'column', flex: 8.5, overflow: 'hidden' }}
-        //  style={specialProuductsRightPanel}
         >
           <div style={{ height: '4vw', display: "flex", alignItems: 'center', }}>
-
             <h3 style={{ margin: '1vw', fontSize: '1.5vw', fontWeight: 'normal' }}>最新上架</h3>
             <div style={{ height: '1.8vw', backgroundColor: Colors.red, width: '3.2vw', borderRadius: 5, display: 'flex', justifyContent: "center", alignItems: 'center' }}>
               <p style={{ fontSize: '.9vw', color: Colors.white }}>NEW!</p>
             </div>
-
           </div>
-          {/* <div onMouseLeave={dragStop}>
-            <ScrollMenu
-              onWheel={onWheel}
-              onMouseDown={() => dragStart}
-              onMouseUp={() => dragStop}
-              onMouseMove={handleDrag}
-            >
-              {items.map(({ id }) => (
-                <Card
-                  title={id}
-                  itemId={id} // NOTE: itemId is required for track items
-                  key={id}
-                  onClick={handleItemClick(id)}
-                  selected={id === selected}
-                />
-              ))}
-            </ScrollMenu>
-          </div> */}
-
           <div style={{
             height: 500
             , display: 'flex',
             alignItems: 'center'
           }}  >
-
             <div
               style={{ width: '100%' }}
-
               onMouseLeave={dragStop}>
               <ScrollMenu
-                // onWheel={onWheel}
                 onMouseDown={() => dragStart}
                 onMouseUp={() => dragStop}
                 onMouseMove={handleDrag}
@@ -360,10 +300,6 @@ function Home() {
                 })
                 }
               </ScrollMenu>
-              {/* <Cart />
-            <Cart />
-            <Cart />
-            <Cart /> */}
             </div>
           </div>
         </div>
@@ -375,7 +311,6 @@ function Home() {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: "center",
-        //  alignItems: 'center'
       }}
       >
         <Slider {...settings} pagination={false}>
@@ -399,7 +334,6 @@ function Home() {
         </Slider>
       </div>
       <div
-        // style={specialProductContainer}
         style={{ width: '95%', margin: '0px auto', backgroundColor: Colors.white }}
       >
         <div style={{ height: '5vw', display: "flex", alignItems: 'center' }}>
@@ -417,7 +351,8 @@ function Home() {
             next={loadMore}
             hasMore={true}
             loader={<h4>Loading...</h4>}
-            style={{ display: 'flex', flexWrap: 'wrap', padding: '.5vw' }}
+            style={{ display: 'flex', flexWrap: 'wrap', padding: '.5vw', maxHeight: '100vw' }}
+            className='scrollBar'
           >
             {docs.map((doc, index) => {
 
@@ -432,47 +367,12 @@ function Home() {
                     oldPrice={oldPrice}
                     disableBtn
                   />
-                  {/* {index == docs?.length - 1 && loadMoreEnable &&
-                    <Button
-                      disableElevation
-                      onClick={loadMore}
-                      sx={{
-                        boxShadow: `0 ${0.15}vw ${0.15}vw #888`,
-                        backgroundColor: Colors.white, color: Colors.primary, border: `.5px solid ${Colors.primary}`, borderRadius: '.5vw', padding: '.8vw', margin: 'auto auto', fontSize: '1vw', maxHeight: '3vw'
-                      }}>
-                      Load More
-                    </Button>
-                  } */}
+
                 </>
               )
             })}
           </InfiniteScroll>
-          {/* {docs?.length > 0 && docs.map((doc, index) => {
-            const { id, icon, title, ProductName, price, oldPrice } = doc.data().cartdata
-            return (
-              <>
-                <Cart
-                  title={title}
-                  icon={icon}
-                  ProductName={ProductName}
-                  price={price}
-                  oldPrice={oldPrice}
-                  disableBtn
-                />
-                {index == docs?.length - 1 && loadMoreEnable &&
-                  <Button
-                    disableElevation
-                    onClick={loadMore}
-                    sx={{
-                      boxShadow: `0 ${0.15}vw ${0.15}vw #888`,
-                      backgroundColor: Colors.white, color: Colors.primary, border: `.5px solid ${Colors.primary}`, borderRadius: '.5vw', padding: '.8vw', margin: 'auto auto', fontSize: '1vw', maxHeight: '3vw'
-                    }}>
-                    Load More
-                  </Button>
-                }
-              </>
-            )
-          })} */}
+
         </div>
       </div>
       <div style={{ height: '8vw', backgroundColor: Colors.white, width: '100%', margin: '2vw 0vw 0vw 0vw', display: 'flex', fontSize: '1.4vw', padding: '0vw 5%' }}>
@@ -484,21 +384,16 @@ function Home() {
         </div>
         <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
           <img src={require('../../assets/Repeat Grid 3.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
-          {/* <img src={`https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/800px-Mastercard_2019_logo.svg.png`} alt="My Image" style={{ height: '4vw', width: "15%" , objectFit: 'contain' }} /> */}
           <img src={require('../../assets/E2-OC1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
-          {/* <img src={`https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Logos.svg/1200px-Logos.svg.png`} alt="My Image" style={{ height: '4vw', width: "15%" , objectFit: 'contain' }} /> */}
           <img src={require('../../assets/E2-OC1-1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
           <img src={require('../../assets/E2-UN1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
           <img src={require('../../assets/E2-visa1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
           <img src={require('../../assets/E2-VS-1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
           <img src={require('../../assets/E2-AE1.png')} alt="My Image" style={{ height: '100%', width: '13%', objectFit: 'contain' }} />
-          {/* <img src={`https://www.boredpanda.com/blog/wp-content/uploads/2020/06/Artist-shows-alternative-versions-of-famous-logos-in-different-styles-5ed4ac823b564__880.jpg`} alt="My Image" style={{ height: '4vw', width: "15%", objectFit: 'contain' }} /> */}
-          {/* <img src={`https://bestlifeonline.com/wp-content/uploads/sites/3/2018/09/tostitos.jpg?quality=82&strip=all`} alt="My Image" style={{ height: '4vw', width: "15%", objectFit: 'contain' }} /> */}
         </div>
       </div>
       <div style={{ height: '13vw', backgroundColor: Colors.gray, width: '100%', display: 'flex', fontSize: '1.4vw', padding: '0.5vw 5% 0vw 3%', }}>
         <div style={{ display: 'flex', flexDirection: 'column', flex: 1, }}>
-          {/* label={<span style={{ flex: 1, fontSize: '1.2vw' }}>电子邮件</span>} /> */}
           <p style={{ fontSize: '1.2vw', margin: '1vw 3vw', }}>
             {`全新體驗 立即下載`}
           </p>
