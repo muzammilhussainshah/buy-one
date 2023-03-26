@@ -24,6 +24,7 @@ import useDrag from '../../components/useDrage';
 import { Card } from '../../components/card';
 import { db } from '../../firebase';
 import '../../App.css'
+import { async } from '@firebase/util';
 
 
 function Home() {
@@ -31,6 +32,7 @@ function Home() {
   const [docs, setDocs] = useState([]);
   const [lastVisible, setLastVisible] = useState(null);
   const [isSticky, setSticky] = useState(false);
+  const [loader, setLoader] = useState(false);
   const { dragStart, dragStop, dragMove, dragging } = useDrag();
 
   // if we wana add more data to db so we can use this function 
@@ -60,16 +62,19 @@ function Home() {
     });
   }, []);
 
-  const loadMore = () => {
-    const q = query(
+  const loadMore = async () => {
+    setLoader(true)
+    const q = await query(
       collection(db, 'cart'),
       startAfter(lastVisible),
       limit(20)
     );
-    getDocs(q).then((snapshot) => {
+    await getDocs(q).then((snapshot) => {
       setDocs([...docs, ...snapshot.docs]);
       setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
     });
+
+    setLoader(false)
   };
 
 
@@ -350,8 +355,20 @@ function Home() {
             dataLength={docs.length}
             next={loadMore}
             hasMore={true}
-            loader={<h4>Loading...</h4>}
-            style={{ display: 'flex', flexWrap: 'wrap', padding: '.5vw', maxHeight: '100vw' }}
+            // loader={
+            //   <div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
+            //     <img
+            //       style={{ height: '10vw', width: '10vw' }}
+            //       src="https://static.wixstatic.com/media/369c26_b396f2977e5a40839e2fc77a6f9aac2b~mv2.gif"
+            //       // style={=}
+            //       alt="GIF image" />
+            //   </div>
+            //   // <h4>Loading...</h4>
+            // }
+            style={{
+              display: 'flex', flexWrap: 'wrap', padding: '.5vw',
+              //  maxHeight: '100vw' 
+            }}
             className='scrollBar'
           >
             {docs.map((doc, index) => {
@@ -367,11 +384,19 @@ function Home() {
                     oldPrice={oldPrice}
                     disableBtn
                   />
-
                 </>
               )
             })}
           </InfiniteScroll>
+          {loader &&
+            <div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
+              <img
+                style={{ height: '10vw', width: '10vw' }}
+                src="https://static.wixstatic.com/media/369c26_b396f2977e5a40839e2fc77a6f9aac2b~mv2.gif"
+                // style={=}
+                alt="GIF image" />
+            </div>
+          }
 
         </div>
       </div>
