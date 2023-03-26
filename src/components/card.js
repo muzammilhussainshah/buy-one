@@ -10,45 +10,48 @@ export function Card({ disableBtn, icon, itemId, price, title, oldPrice, Product
   const visible = visibility.isItemVisible(itemId);
 
   return (
-    <div
-      className="cartHover"
-      onClick={() => onClick && onClick()}
-      role="button"
-      style={{ height: '24vw', width: '15vw',padding:'.5vw',borderRadius:'1vw', display: "flex", flexDirection: 'column', margin: '1.5vw' }}>
-      <div style={{ height: '100%', width: '26%', position: "absolute " }}>
+    <>
+      <div style={{ height: '100%', width: '22%' , position: "absolute" }}>
         <div style={{ color: 'transparent' }}>
           {JSON.stringify(visible)}
         </div>
         <div style={{ color: 'transparent' }}>
           {JSON.stringify(!!selected)}</div>
       </div>
-      <div style={{ display: "flex", flex: 7, overflow: "hidden" }}>
-        <img src={icon} alt="My Image" style={{ height: '100%', width: "100%", }} />
-      </div>
-      <div style={{ display: "flex", flexDirection: 'column', flex: 3, }}>
-
-        <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <p style={{ margin: 0, fontSize: '1.1vw' }}>{title}</p>
-          <p style={{ margin: 0, fontSize: '1.1vw' }}>{ProductName}</p>
-
+      <div
+        className="cartHover"
+        onClick={() => onClick && onClick()}
+        role="button"
+        style={{ height: '24vw', width: '15vw', padding: '.5vw', borderRadius: '1vw', display: "flex", flexDirection: 'column', margin: '1.5vw' }}>
+        <div style={{ display: "flex", flex: 7, overflow: "hidden" }}>
+          <img src={icon} alt="My Image" style={{ height: '100%', width: "100%", }} />
         </div>
-        <div style={{ display: 'flex', flex: 1, }}>
-          <div style={{ display: 'flex', flex: 1, flexDirection: disableBtn ? 'row' : 'column', justifyContent: 'space-between', }}>
-            <p style={{ margin: 0, fontWeight: '700', color: Colors.primary, fontSize: '1.3vw' }}>{price}</p>
-            <p style={{ margin: 0, fontSize: '1vw' }}>{oldPrice}</p>
+        <div style={{ display: "flex", flexDirection: 'column', flex: 3, }}>
+
+          <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <p style={{ margin: 0, fontSize: '1.1vw' }}>{title}</p>
+            <p style={{ margin: 0, fontSize: '1.1vw' }}>{ProductName}</p>
+
           </div>
-          {!disableBtn &&
-            <div style={{ display: 'flex', flex: 1, justifyContent: "center", alignItems: 'flex-end' }}>
-              <MyButton label={
-                <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1vw' }}
-                >
-
-                  Add to Cart</span>} style={{ backgroundColor: Colors.gray, width: '100%', borderWidth: '0px', height: "55%" }} />
+          <div style={{ display: 'flex', flex: 1, }}>
+            <div style={{ display: 'flex', flex: 1, flexDirection: disableBtn ? 'row' : 'column', justifyContent: 'space-between', }}>
+              <p style={{ margin: 0, fontWeight: '700', color: Colors.primary, fontSize: '1.3vw' }}>{price}</p>
+              <p style={{ margin: 0, fontSize: '1vw' }}>{oldPrice}</p>
             </div>
-          }
+            {!disableBtn &&
+              <div style={{ display: 'flex', flex: 1, justifyContent: "center", alignItems: 'flex-end' }}>
+                <MyButton label={
+                  <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1vw' }}
+                  >
+
+                    Add to Cart</span>} style={{ backgroundColor: Colors.gray, width: '100%', borderWidth: '0px', height: "55%" }} />
+              </div>
+            }
+          </div>
         </div>
       </div>
-    </div>
+    </>
+
     // <div
     //   onClick={() => onClick()}
     //   role="button"
