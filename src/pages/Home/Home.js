@@ -64,17 +64,19 @@ function Home() {
 
   const loadMore = async () => {
     setLoader(true)
-    const q = await query(
-      collection(db, 'cart'),
-      startAfter(lastVisible),
-      limit(20)
-    );
-    await getDocs(q).then((snapshot) => {
-      setDocs([...docs, ...snapshot.docs]);
-      setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
-    });
+    setTimeout(async () => {
+      const q = await query(
+        collection(db, 'cart'),
+        startAfter(lastVisible),
+        limit(20)
+      );
+      await getDocs(q).then((snapshot) => {
+        setDocs([...docs, ...snapshot.docs]);
+        setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
+      });
 
-    setLoader(false)
+      setLoader(false)
+    }, 1000);
   };
 
 
@@ -393,7 +395,6 @@ function Home() {
               <img
                 style={{ height: '10vw', width: '10vw' }}
                 src="https://static.wixstatic.com/media/369c26_b396f2977e5a40839e2fc77a6f9aac2b~mv2.gif"
-                // style={=}
                 alt="GIF image" />
             </div>
           }
