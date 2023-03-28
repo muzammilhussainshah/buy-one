@@ -3,27 +3,6 @@ import React, {
     useState
 } from 'react';
 
-import Slider from 'react-slick';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import { TextField } from '@mui/material';
-import {
-    collection,
-    query,
-    addDoc,
-    limit,
-    startAfter,
-    getDocs
-} from "@firebase/firestore";
-
-// import Banner from '../../components/Banner'
-// import Colors from "../../styles/Colors"
-// import MyButton from '../../components/MyButton';
-// import useDrag from '../../components/useDrage';
-// import { Card } from '../../components/card';
-// import { db } from '../../firebase';
-// import { Cart } from './Components/Components';
 import '../App.css'
 import Banner from './Banner';
 import { bannerContainer } from './styles';
