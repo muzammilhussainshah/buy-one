@@ -1,12 +1,4 @@
 import React from 'react';
-import {
-    collection,
-    query,
-    addDoc,
-    limit,
-    startAfter,
-    getDocs
-} from "@firebase/firestore";
 
 import Colors from '../../../styles/Colors';
 
