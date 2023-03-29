@@ -1,11 +1,11 @@
 import React from 'react';
 import '../App.css'
-function MyButton({ label, onClick, style, icon }) {
+function MyButton({ label, onClick, className, style, icon }) {
 
   return (
     <button
-    className='buttonsHover'
-    onClick={onClick} style={style}>
+      className={className ? className : 'buttonsHover'}
+      onClick={onClick} style={style}>
       {label}
       {icon}
     </button>

@@ -6,6 +6,69 @@
      font-size: 2vw;
      display: flex;
      align-items: center;
-     margin: 2vw auto;
+     margin: 2vw auto auto auto;
      padding: 3vw;
+ }
+
+ .createAddressSection {
+     background-color: white;
+     /* height: 8vw; */
+     width: 90%;
+     border-bottom: .1vw solid black;
+     font-size: 1.5vw;
+     margin: auto;
+     padding: 2vw 3vw;
+     display: flex;
+ }
+
+ .AddressInputTitle {
+     font-size: 1.2vw;
+     margin: .5vw 0px;
+
+ }
+
+ .AddressHeading {
+     font-size: 1.5vw;
+     margin: .2vw 0px;
+
+ }
+
+
+ .doubleInput {
+     /* width: 40% !important; */
+     height: 4vw !important;
+     border-radius: 0px !important;
+     /* border-radius: 10px ; */
+     font-size: 1.2vw !important;
+     margin: .2vw 0vw;
+ }
+
+ .inputForm {
+     width: 90%;
+     height: 4vw;
+     border-radius: 0px !important;
+     /* border-radius: 10px ; */
+     font-size: 1.2vw !important;
+     margin: .2vw 0vw;
+ }
+
+ .multiText {
+     padding: 1vw !important;
+     /* height: 10vw; */
+     font-size: 1.2vw !important;
+     /* /borderr */
+     border-radius: 0px !important;
+     height: 10vw !important;
+ }
+
+ .adressHelperStyle {
+     font-size: 1vw;
+     margin: 0vw 0px 0px 0px;
+     width: 90%;
+     text-align: center;
+     color: #2e58a6;
+ }
+
+ .confirmationBtn:hover {
+     cursor: pointer;
  }
