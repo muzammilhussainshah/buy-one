@@ -7,7 +7,8 @@ import Slider from 'react-slick';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import { TextField } from '@mui/material';
+import { Modal, TextField } from '@mui/material';
+// import Button from '@material-ui/core/Button';
 import {
   collection,
   query,
@@ -32,6 +33,7 @@ import { Header } from '../../components/Header';
 
 function Home() {
   const [selected, setSelected] = useState("");
+  const [open, setOpen] = useState(false);
   const [docs, setDocs] = useState([]);
   const [lastVisible, setLastVisible] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -104,9 +106,34 @@ function Home() {
   };
 
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <div style={{ backgroundColor: Colors.bg }}>
+      <button onClick={handleOpen}>
+        Open Modal
+      </button>
+      <Modal open={open} onClose={handleClose}>
+        <div style={{ backgroundColor: 'red', width: '50%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto' }}>
+          {/* <TextField label="Input 1" />
+          <TextField label="Input 2" />
+          <TextField label="Input 3" /> */}
+          <div style={{height:"80%",width:'100%',backgroundColor:'blue',display:'flex',flexDirection:'column'}}>
+            <div style={{display:'flex',flex:1.5,backgroundColor:Colors.primary}}>
+              <p></p>
+            </div>
+            <div style={{display:'flex',flex:8.5,backgroundColor:"orange"}}></div>
+          </div>
+        </div>
+      </Modal>
+
       <div
         style={searchBarSection()}
       >
@@ -277,7 +304,7 @@ function Home() {
 
         </div>
       </div>
-     
+
     </div >
   );
 }

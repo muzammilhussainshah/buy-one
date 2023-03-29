@@ -1,0 +1,11 @@
+ .confirmAddressContainer {
+     background-color: white;
+     height: 8vw;
+     width: 90%;
+     border-bottom: .1vw solid black;
+     font-size: 2vw;
+     display: flex;
+     align-items: center;
+     margin: 2vw auto;
+     padding: 3vw;
+ }
