@@ -3,16 +3,16 @@
      height: 8vw;
      width: 90%;
      border-bottom: .1vw solid black;
-     font-size: 2vw;
+     font-size: 2.2vw;
      display: flex;
      align-items: center;
      margin: 2vw auto auto auto;
-     padding: 3vw;
+     font-weight: 600;
+     padding: 0px 6vw !important;
  }
 
  .createAddressSection {
      background-color: white;
-     /* height: 8vw; */
      width: 90%;
      border-bottom: .1vw solid black;
      font-size: 1.5vw;
@@ -30,45 +30,277 @@
  .AddressHeading {
      font-size: 1.5vw;
      margin: .2vw 0px;
+     font-weight: 600;
 
  }
 
 
- .doubleInput {
-     /* width: 40% !important; */
-     height: 4vw !important;
-     border-radius: 0px !important;
-     /* border-radius: 10px ; */
-     font-size: 1.2vw !important;
-     margin: .2vw 0vw;
+ .doubleInputContainer {
+     display: flex;
+     justify-content: space-between;
+     width: 90%;
  }
 
  .inputForm {
      width: 90%;
-     height: 4vw;
+     height: 3.5vw;
      border-radius: 0px !important;
-     /* border-radius: 10px ; */
      font-size: 1.2vw !important;
      margin: .2vw 0vw;
  }
 
  .multiText {
      padding: 1vw !important;
-     /* height: 10vw; */
      font-size: 1.2vw !important;
-     /* /borderr */
      border-radius: 0px !important;
      height: 10vw !important;
  }
 
  .adressHelperStyle {
      font-size: 1vw;
-     margin: 0vw 0px 0px 0px;
+     margin: -.5vw 0px 0px 0px;
      width: 90%;
      text-align: center;
      color: #2e58a6;
  }
 
+ .confirmationBtn {
+     background-color: #2E58A6;
+     height: 4vw;
+     padding: 0px 3vw;
+     border: 0px;
+     font-size: 1vw;
+     color: white;
+ }
+
  .confirmationBtn:hover {
      cursor: pointer;
+ }
+
+ .productImg {
+     height: 92%;
+     width: 92%;
+     object-fit: contain;
+ }
+
+ .checkBoxContainer {
+     display: flex;
+     align-items: center;
+     padding: 0;
+     background-color: transparent;
+     border: 0px;
+     margin: 1vw 0px;
+ }
+
+ .detailText {
+     text-decoration-line: underline;
+ }
+
+ .confirmContainer {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .productSection {
+     width: 50%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .orderHeaderBtn {
+     font-size: 1.2vw !important;
+     font-weight: 600;
+     color: #333333 !important;
+ }
+
+ .AddressHeading2 {
+     font-weight: 600;
+     font-size: 1.5vw;
+ }
+
+ .orderHeader {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     width: 100%;
+ }
+
+ .makeAnchr {
+     text-decoration-line: underline;
+ }
+
+ .makeAnchr:hover {
+     cursor: pointer;
+ }
+
+ .cartContainer {
+     display: flex;
+     flex-direction: row;
+     width: 100%;
+     background-color: #EBF0F9;
+     height: 18vw;
+ }
+
+ .productImgContainer {
+     display: flex;
+     flex: 2.5;
+     justify-content: flex-end;
+     align-items: center;
+ }
+
+ .pricing {
+     display: flex;
+     flex: 1.3;
+     justify-content: center;
+ }
+
+ .imgContainer {
+     height: 80%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 80%;
+     background-color: white;
+ }
+
+ .simple {
+     font-weight: normal;
+     text-align: justify;
+     margin: 20px 1vw;
+ }
+
+ .productImgContainer2 {
+     display: flex;
+     flex: 2.5;
+     flex-direction: column;
+     justify-content: space-between;
+ }
+
+ .priceText {
+     font-weight: bold;
+ }
+
+ .blue {
+     color: #2E58A6;
+ }
+
+ .makeBox {
+     height: 2vw;
+     min-width: 2vw;
+     margin: 20px 0px;
+     border: 1px solid #707070;
+     color: #707070;
+     display: flex;
+     font-size: 1.5vw;
+     justify-content: center;
+     align-items: center;
+     background-color: #F3F3F3;
+ }
+
+ .totalCost {
+     font-size: 2.2vw;
+     margin: 0px;
+     text-align: end;
+     width: 100%;
+     color: #2E58A6;
+     font-weight: 600;
+ }
+
+ .paymentModalHeader {
+     display: flex;
+     flex: 1.5;
+     justify-content: center;
+     align-items: center;
+     background-color: #2E58A6;
+ }
+
+ .paymentModalHeading {
+     color: white;
+ }
+
+ .paymentModalComponent {
+     background-color: red;
+     width: 60%;
+     /* height: 100%; */
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: auto;
+
+ }
+
+ .paymentModalChildContainer {
+     height: 40vw;
+     width: 100%;
+     display: flex;
+     flex-direction: column
+ }
+
+ .addressInputBody {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     flex: 8.5;
+     justify-content: center;
+     background-color: white;
+ }
+
+ .paymentCartContainer {
+     height: 15vw;
+     width: 70%;
+     margin: 0px auto;
+     padding: 1vw;
+     border: .2vw solid #2E58A6;
+ }
+
+ .cartCheckboxContainer {
+     width: 70%;
+ }
+
+ .paymentcartButton {
+     width: 40%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: #2E58A6;
+ }
+
+ .paymentCartHeader {
+     display: flex;
+     align-items: center;
+ }
+
+ .paymentCartHeaderMasterLogo {
+     height: 2vw;
+     width: 2vw;
+
+ }
+
+ .mastercard {
+     margin: 0px;
+     text-transform: uppercase;
+     font-size: 1vw !important;
+     font-weight: 600;
+ }
+
+ .spaceBetween {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .cartInputContainer {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     height: 90%;
+     padding-left: 1vw;
+ }
+
+ .paymentModal {
+     display: flex;
+     justify-content: center;
+     align-items: center;
  }

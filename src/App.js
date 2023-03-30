@@ -14,14 +14,15 @@ function App() {
     <div style={{ backgroundColor: Colors.bg }}>
       <Header />
       <Routes>
-        {/* <Route path="/" element={<Home />}></Route> */}
+        <Route path="/" element={<Home />}></Route>
         <Route path="/ConfirmAddress" element={<ConfirmAddress />}></Route>
         {/* <Route path="/about" element={<About />}></Route>
-      <Route path="/Business" element={<Business />}></Route>
-      <Route path="/company" element={<Company />}></Route>
-      <Route path="/contact" element={<Contact />}></Route>
-    <Route path="/news" element={<News />}></Route> */}
+        <Route path="/Business" element={<Business />}></Route>
+        <Route path="/company" element={<Company />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/news" element={<News />}></Route> */}
       </Routes>
+      {/* <Home /> */}
       <Footer />
     </div>
   );
