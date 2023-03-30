@@ -7,6 +7,7 @@ import { Modal, } from '@mui/material';
 import './style.css'
 import MyButton from '../../components/MyButton';
 import {
+  CardMethods,
   Cart,
   CheckBox,
   CustomInput,
@@ -32,7 +33,8 @@ function ConfirmAddress() {
   return (
     <>
       <Modal open={open} onClose={handleClose} className="paymentModal" >
-        <MasterCard />
+        {/* <MasterCard /> */}
+        <CardMethods />
       </Modal>
 
       <div className='confirmAddressContainer'>
@@ -105,7 +107,7 @@ function ConfirmAddress() {
           <MyButton
             label='立即付款'
             className={'confirmationBtn'}
-            // onClick={() => alert()}
+          // onClick={() => alert()}
           />
         </div>
       </div >

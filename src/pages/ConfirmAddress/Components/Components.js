@@ -129,17 +129,22 @@ export const CheckBox = ({ label }) => {
         </button>
     )
 }
+const MasterCardHeader = () => {
+    return (
+        <div className='paymentModalHeader'>
+            <p className='AddressHeading paymentModalHeading'>
+                Buyone 網上付款平台
+            </p>
+        </div>
+    )
+}
 export const MasterCard = ({ label }) => {
     return (
         <div className='paymentModalComponent'>
             <div className='paymentModalChildContainer'>
-                <div className='paymentModalHeader'>
-                    <p className='AddressHeading paymentModalHeading'>
-                        Buyone 網上付款平台
-                    </p>
-                </div>
+                <MasterCardHeader />
                 <div className='addressInputBody'>
-                    <p className='AddressInputTitle'>
+                    <p className='masterCardHeading'>
                         請輸入卡號
                     </p>
                     <div className='paymentCartContainer'>
@@ -151,7 +156,7 @@ export const MasterCard = ({ label }) => {
                                     className="paymentCartHeaderMasterLogo"></img>
                                 <p className='orderHeaderBtn simple mastercard' >mastercard</p>
                             </div>
-                            <p className='orderHeaderBtn simple mastercard' >******* 2959</p>
+                            <p className='orderHeaderBtn simple mastercard' style={{ width: '35%', }} >******* 2959</p>
                             <p className='orderHeaderBtn simple mastercard makeAnchr' >新增銀行卡付款</p>
                         </div>
                         <div className='cartInputContainer'>
@@ -177,9 +182,85 @@ export const MasterCard = ({ label }) => {
                         <MyButton
                             label='立即付款'
                             className={'confirmationBtn'}
-                            // onClick={() => alert()}
+                        // onClick={() => alert()}
                         />
                     </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+export const CardMethods = ({ label }) => {
+    return (
+        <div className='paymentModalComponent'>
+            <div className='paymentModalChildContainer'>
+                <MasterCardHeader />
+                <div className='addressInputBody'>
+                    <p className='masterCardHeading'>
+                    請選擇付款方式
+                    </p>
+                    <div className='paymentCartCategoryContainer'>
+                        <div style={{ display: 'flex', flex: 1 }}>
+                            {/* <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
+                            <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
+                            <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' /> */}
+                            <div className='paymentCardContainer'>
+                                <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
+                            </div>
+                            <div className='paymentCardContainer'>
+                                <img style={{}} src={require('../../../assets/E2-OC1.png')} className='paymentCardImgStyle' />
+
+                            </div>
+                            <div className='paymentCardContainer'>
+                                <img style={{}} src={require('../../../assets/E2-OC1-1.png')} className='paymentCardImgStyle' />
+
+                            </div>
+                        </div>
+                        <div style={{ display: 'flex', flex: 1 }}>
+                            {/* <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
+                            <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
+                            <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' /> */}
+                            <div className='paymentCardContainer'>
+                                <img style={{}} src={require('../../../assets/E2-AE1.png')} className='paymentCardImgStyle' />
+                            </div>
+                            <div className='paymentCardContainer'>
+                                <img style={{}} src={require('../../../assets/E2-visa1.png')} className='paymentCardImgStyle' />
+                            </div>
+                            <div className='paymentCardContainer'>
+                                <img style={{}} src={require('../../../assets/E2-UN1.png')} className='paymentCardImgStyle' />
+                            </div>
+                        </div>
+                        {/* <div className='paymentCartHeader spaceBetween'>
+                            <div className='paymentCartHeader'>
+                                <RadioButtonCheckedIcon sx={{ fontSize: '1vw', color: Colors.primary }} />
+                                <img
+                                    src={require('../../../assets/Repeat Grid 3.png')}
+                                    className="paymentCartHeaderMasterLogo"></img>
+                                <p className='orderHeaderBtn simple mastercard' >mastercard</p>
+                            </div>
+                            <p className='orderHeaderBtn simple mastercard' style={{ width: '35%', }} >******* 2959</p>
+                            <p className='orderHeaderBtn simple mastercard makeAnchr' >新增銀行卡付款</p>
+                        </div>
+                        <div className='cartInputContainer'>
+                            <div style={{ width: '60%' }}>
+                                <CustomInput
+                                    inputTitle={`卡號:`}
+                                    placeholder={"請輸入銀行卡號"} />
+
+                            </div>
+                            <CustomInput
+                                inputTitle={`有效期:`}
+                                placeholder={"月/年"} />
+                            <CustomInput
+                                inputTitle={`安全碼:`}
+                                placeholder={"CCV"} />
+
+                        </div> */}
+                    </div>
+                    {/* <div className='cartCheckboxContainer'>
+                        <CheckBox label={`本人 確應付款無誤`} />
+                    </div> */}
+                         
                 </div>
             </div>
         </div>
