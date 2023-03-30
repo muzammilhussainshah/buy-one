@@ -254,9 +254,6 @@ const PrivacyPolicyCardBody = ({ setOpenCategory }) => {
                     本公司使用日本境外營運商的廣告投放服務和分析服務時，為了向客戶投放更有關連的廣告、了解與分析使用情況、改善服務，我們可能向日本境外營運商提供個人資料。關於各營運商的個人資料保護措施以及該國的個人資料保護制度，請參閱以下連結。<br />
                     ・Meta Platforms, Inc. (Facebook)：美國（加利福尼亞州）<br />
                     ・Google LLC：美國（加利福尼亞州）<br />其他
-
-
-
                 </p>
                 <p className='masterCardHeading'  >
                     本次增加了應用程式隱私政策。
