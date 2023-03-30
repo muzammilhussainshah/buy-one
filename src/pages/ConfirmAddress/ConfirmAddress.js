@@ -33,8 +33,10 @@ function ConfirmAddress() {
   return (
     <>
       <Modal open={open} onClose={handleClose} className="paymentModal" >
-        {/* <MasterCard /> */}
-        <CardMethods />
+         {/* <MasterCard/> */}
+         <MasterCard PrivacyPolicyCard
+          label2={'請確認以及同意後繼續使用Buyee服務。'}
+          label={`Buyone的隱私政策有進行改訂`} /> 
       </Modal>
 
       <div className='confirmAddressContainer'>

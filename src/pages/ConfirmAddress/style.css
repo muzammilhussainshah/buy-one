@@ -217,6 +217,7 @@
  .paymentModalHeader {
      display: flex;
      height: 6vw;
+     flex-direction: column;
      /* flex: 1.5; */
      justify-content: center;
      align-items: center;
@@ -224,11 +225,13 @@
  }
 
  .paymentModalHeading {
+     /* background-color: red; */
+     font-size: 1.3vw;
      color: white;
  }
 
  .paymentModalComponent {
-     background-color: red;
+     /* background-color: red; */
      width: 60%;
      display: flex;
      justify-content: center;
@@ -306,8 +309,10 @@
 
  .paymentModal {
      display: flex;
-     justify-content: center;
-     align-items: center;
+     /* justify-content: center;
+     align-items: center; */
+     /* margin: 1vw 0px; */
+     overflow-y: scroll;
  }
 
  .paymentCardContainer {
@@ -326,7 +331,7 @@
      width: 70%;
      /* margin: 0px auto; */
      /* padding: 1vw; */
-      display: flex;
+     display: flex;
      flex-direction: column;
      padding: 0;
      /* style={{ display: 'flex',flexDirection:'column',padding:0 }} */
@@ -339,4 +344,21 @@
      object-fit: contain;
      /* display: flex;
     flex:1 */
+ }
+
+ .PrivacyPolicyCardBody {
+     /* height: 15vw;
+     width: 70%; */
+     /* margin: 0px auto; */
+     /* padding: 1vw; */
+     display: flex;
+     flex-direction: column;
+     padding: 2vw;
+     width: 75%;
+     /* style={{ display: 'flex',flexDirection:'column',padding:0 }} */
+     border: .1vw solid #707070;
+ }
+ .letterSpace{
+    line-height: 1.8vw;
+    /* letter-spacing: .1vw; */
  }

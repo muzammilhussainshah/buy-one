@@ -129,140 +129,179 @@ export const CheckBox = ({ label }) => {
         </button>
     )
 }
-const MasterCardHeader = () => {
+const MasterCardHeader = ({ label, label2 }) => {
     return (
-        <div className='paymentModalHeader'>
-            <p className='AddressHeading paymentModalHeading'>
-                Buyone 網上付款平台
-            </p>
-        </div>
+        <>
+            <div className='paymentModalHeader'>
+                <p className='AddressHeading paymentModalHeading'>
+                    {label ? label : 'Buyone 網上付款平台'}
+                </p>
+                {label2 &&
+                    <p className='AddressHeading paymentModalHeading'>
+                        {label2}
+                    </p>
+                }
+            </div>
+        </>
     )
 }
-export const MasterCard = ({ label }) => {
+const MasterCardBody = () => {
+    return (
+        <>
+
+            <div className='paymentCartContainer'>
+                <div className='paymentCartHeader spaceBetween'>
+                    <div className='paymentCartHeader'>
+                        <RadioButtonCheckedIcon sx={{ fontSize: '1vw', color: Colors.primary }} />
+                        <img
+                            src={require('../../../assets/Repeat Grid 3.png')}
+                            className="paymentCartHeaderMasterLogo"></img>
+                        <p className='orderHeaderBtn simple mastercard' >mastercard</p>
+                    </div>
+                    <p className='orderHeaderBtn simple mastercard' style={{ width: '35%', }} >******* 2959</p>
+                    <p className='orderHeaderBtn simple mastercard makeAnchr' >新增銀行卡付款</p>
+                </div>
+                <div className='cartInputContainer'>
+                    <div style={{ width: '60%' }}>
+                        <CustomInput
+                            inputTitle={`卡號:`}
+                            placeholder={"請輸入銀行卡號"} />
+
+                    </div>
+                    <CustomInput
+                        inputTitle={`有效期:`}
+                        placeholder={"月/年"} />
+                    <CustomInput
+                        inputTitle={`安全碼:`}
+                        placeholder={"CCV"} />
+
+                </div>
+            </div>
+            <div className='cartCheckboxContainer'>
+                <CheckBox label={`本人 確應付款無誤`} />
+            </div>
+            <div className='cartCheckboxContainer paymentcartButton'>
+                <MyButton
+                    label='立即付款'
+                    className={'confirmationBtn'}
+                />
+            </div>
+        </>
+    )
+}
+const CardCategoryBody = ({ setOpenCategory }) => {
+    return (
+        <div className='paymentCartCategoryContainer'>
+            <div style={{ display: 'flex', flex: 1 }}>
+                <div onClick={() => {
+                    setOpenCategory(true)
+                }} className='paymentCardContainer'>
+                    <img src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
+                </div>
+                <div onClick={() => {
+                    setOpenCategory(true)
+                }} className='paymentCardContainer'>
+                    <img src={require('../../../assets/E2-OC1.png')} className='paymentCardImgStyle' />
+                </div>
+                <div onClick={() => {
+                    setOpenCategory(true)
+                }} className='paymentCardContainer'>
+                    <img src={require('../../../assets/E2-OC1-1.png')} className='paymentCardImgStyle' />
+                </div>
+            </div>
+            <div style={{ display: 'flex', flex: 1 }}>
+                <div onClick={() => {
+                    setOpenCategory(true)
+                }} className='paymentCardContainer'>
+                    <img src={require('../../../assets/E2-AE1.png')} className='paymentCardImgStyle' />
+                </div>
+                <div onClick={() => {
+                    setOpenCategory(true)
+                }} className='paymentCardContainer'>
+                    <img src={require('../../../assets/E2-visa1.png')} className='paymentCardImgStyle' />
+                </div>
+                <div onClick={() => {
+                    setOpenCategory(true)
+                }} className='paymentCardContainer'>
+                    <img src={require('../../../assets/E2-UN1.png')} className='paymentCardImgStyle' />
+                </div>
+            </div>
+        </div>
+
+    )
+}
+const PrivacyPolicyCardBody = ({ setOpenCategory }) => {
+    return (
+        <>
+            <div className='PrivacyPolicyCardBody'>
+                <p className='masterCardHeading'  >
+                    關於個人相關資料提供的增加項目
+                </p>
+                <p className='masterCardHeading'  >
+                    本次增加了以下項目。
+                </p>
+                <p className='masterCardHeading letterSpace'  >
+                    7. 個人相關資料的提供<br />
+                    本公司從訪問解析、廣告以及成果報酬型廣告業者等利用個人相關資料的營運商處獲得客戶在該網站的瀏覽資訊、位置資訊、年齡性別、設備/OS/網路、興趣及關注、參照源以及購買資訊等個人相關資料（指個人資料保護法中規定的個人相關資料。下同），將之用於統計資料製作、服務改善以及廣告等目的。<br />
+                    關於個人資料適用於日本境外營運商的增加項目
+
+                </p>
+                <p className='masterCardHeading'  >
+                    本次增加了以下項目。
+                </p>
+                <p className='masterCardHeading letterSpace'  >
+                    10. 向日本境外營運商提供個人資料<br />
+                    本公司使用日本境外營運商的廣告投放服務和分析服務時，為了向客戶投放更有關連的廣告、了解與分析使用情況、改善服務，我們可能向日本境外營運商提供個人資料。關於各營運商的個人資料保護措施以及該國的個人資料保護制度，請參閱以下連結。<br />
+                    ・Meta Platforms, Inc. (Facebook)：美國（加利福尼亞州）<br />
+                    ・Google LLC：美國（加利福尼亞州）<br />其他
+
+
+
+                </p>
+                <p className='masterCardHeading'  >
+                    本次增加了應用程式隱私政策。
+                </p>
+            </div>
+            <div className='cartCheckboxContainer'>
+                <CheckBox label={`同意隱私政策。`} />
+            </div>
+            <div className='cartCheckboxContainer paymentcartButton'>
+                <MyButton
+                    label='同意隱私政策,開始使用Buyone'
+                    className={'confirmationBtn'}
+                />
+            </div>
+        </>
+
+    )
+}
+export const MasterCard = ({ PrivacyPolicyCard, label, label2 }) => {
+    const [openCategory, setOpenCategory] = useState(false)
     return (
         <div className='paymentModalComponent'>
             <div className='paymentModalChildContainer'>
-                <MasterCardHeader />
+                <MasterCardHeader label2={label2} label={label} />
                 <div className='addressInputBody'>
-                    <p className='masterCardHeading'>
-                        請輸入卡號
-                    </p>
-                    <div className='paymentCartContainer'>
-                        <div className='paymentCartHeader spaceBetween'>
-                            <div className='paymentCartHeader'>
-                                <RadioButtonCheckedIcon sx={{ fontSize: '1vw', color: Colors.primary }} />
-                                <img
-                                    src={require('../../../assets/Repeat Grid 3.png')}
-                                    className="paymentCartHeaderMasterLogo"></img>
-                                <p className='orderHeaderBtn simple mastercard' >mastercard</p>
-                            </div>
-                            <p className='orderHeaderBtn simple mastercard' style={{ width: '35%', }} >******* 2959</p>
-                            <p className='orderHeaderBtn simple mastercard makeAnchr' >新增銀行卡付款</p>
-                        </div>
-                        <div className='cartInputContainer'>
-                            <div style={{ width: '60%' }}>
-                                <CustomInput
-                                    inputTitle={`卡號:`}
-                                    placeholder={"請輸入銀行卡號"} />
+                    {!PrivacyPolicyCard ?
+                        <p className='masterCardHeading'>
 
-                            </div>
-                            <CustomInput
-                                inputTitle={`有效期:`}
-                                placeholder={"月/年"} />
-                            <CustomInput
-                                inputTitle={`安全碼:`}
-                                placeholder={"CCV"} />
+                            {!openCategory ? `請選擇付款方式` : `請輸入卡號`}
+                        </p> :
+                        <p className='masterCardHeading' style={{ width: '65%' }}>
+                            感謝您使用Buyone的服務。<br />
+                            我們於2022年8月31日進行了隱私政策的修訂，特此通知。
 
-                        </div>
-                    </div>
-                    <div className='cartCheckboxContainer'>
-                        <CheckBox label={`本人 確應付款無誤`} />
-                    </div>
-                    <div className='cartCheckboxContainer paymentcartButton'>
-                        <MyButton
-                            label='立即付款'
-                            className={'confirmationBtn'}
-                        // onClick={() => alert()}
-                        />
-                    </div>
+                        </p>
+
+                    }
+                    {PrivacyPolicyCard ? <PrivacyPolicyCardBody /> :
+                        openCategory ?
+                            <MasterCardBody setOpenCategory={setOpenCategory} />
+                            :
+                            <CardCategoryBody setOpenCategory={setOpenCategory} />
+                    }
                 </div>
             </div>
         </div>
     )
-}
-export const CardMethods = ({ label }) => {
-    return (
-        <div className='paymentModalComponent'>
-            <div className='paymentModalChildContainer'>
-                <MasterCardHeader />
-                <div className='addressInputBody'>
-                    <p className='masterCardHeading'>
-                    請選擇付款方式
-                    </p>
-                    <div className='paymentCartCategoryContainer'>
-                        <div style={{ display: 'flex', flex: 1 }}>
-                            {/* <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
-                            <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
-                            <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' /> */}
-                            <div className='paymentCardContainer'>
-                                <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
-                            </div>
-                            <div className='paymentCardContainer'>
-                                <img style={{}} src={require('../../../assets/E2-OC1.png')} className='paymentCardImgStyle' />
-
-                            </div>
-                            <div className='paymentCardContainer'>
-                                <img style={{}} src={require('../../../assets/E2-OC1-1.png')} className='paymentCardImgStyle' />
-
-                            </div>
-                        </div>
-                        <div style={{ display: 'flex', flex: 1 }}>
-                            {/* <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
-                            <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' />
-                            <img style={{}} src={require('../../../assets/Repeat Grid 3.png')} className='paymentCardImgStyle' /> */}
-                            <div className='paymentCardContainer'>
-                                <img style={{}} src={require('../../../assets/E2-AE1.png')} className='paymentCardImgStyle' />
-                            </div>
-                            <div className='paymentCardContainer'>
-                                <img style={{}} src={require('../../../assets/E2-visa1.png')} className='paymentCardImgStyle' />
-                            </div>
-                            <div className='paymentCardContainer'>
-                                <img style={{}} src={require('../../../assets/E2-UN1.png')} className='paymentCardImgStyle' />
-                            </div>
-                        </div>
-                        {/* <div className='paymentCartHeader spaceBetween'>
-                            <div className='paymentCartHeader'>
-                                <RadioButtonCheckedIcon sx={{ fontSize: '1vw', color: Colors.primary }} />
-                                <img
-                                    src={require('../../../assets/Repeat Grid 3.png')}
-                                    className="paymentCartHeaderMasterLogo"></img>
-                                <p className='orderHeaderBtn simple mastercard' >mastercard</p>
-                            </div>
-                            <p className='orderHeaderBtn simple mastercard' style={{ width: '35%', }} >******* 2959</p>
-                            <p className='orderHeaderBtn simple mastercard makeAnchr' >新增銀行卡付款</p>
-                        </div>
-                        <div className='cartInputContainer'>
-                            <div style={{ width: '60%' }}>
-                                <CustomInput
-                                    inputTitle={`卡號:`}
-                                    placeholder={"請輸入銀行卡號"} />
-
-                            </div>
-                            <CustomInput
-                                inputTitle={`有效期:`}
-                                placeholder={"月/年"} />
-                            <CustomInput
-                                inputTitle={`安全碼:`}
-                                placeholder={"CCV"} />
-
-                        </div> */}
-                    </div>
-                    {/* <div className='cartCheckboxContainer'>
-                        <CheckBox label={`本人 確應付款無誤`} />
-                    </div> */}
-                         
-                </div>
-            </div>
-        </div>
-    )
-}
+} 
