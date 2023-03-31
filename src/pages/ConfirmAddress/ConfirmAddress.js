@@ -7,14 +7,12 @@ import { Modal, } from '@mui/material';
 import './style.css'
 import MyButton from '../../components/MyButton';
 import {
-  CardMethods,
   Cart,
   CheckBox,
   CustomInput,
   MasterCard,
   OrderHeader
 } from './Components/Components';
-import Colors from '../../styles/Colors';
 
 
 function ConfirmAddress() {
@@ -22,21 +20,22 @@ function ConfirmAddress() {
   const [open, setOpen] = useState('');
 
 
-  const handleOpen = (label) => {
-    setOpen(label);
-  };
+  const handleOpen = (label) => setOpen(label);
 
-  const handleClose = () => {
-    setOpen('');
-  };
+  const handleClose = () => setOpen('')
+
 
   return (
     <>
-      <Modal open={open == 'MasterCard' ? true : open == 'PrivacyPolicyCard' ? true : false} onClose={handleClose} className="paymentModal" >
+      <Modal
+        open={open == 'MasterCard' ? true : open == 'PrivacyPolicyCard' ? true : false}
+        onClose={handleClose}
+        className="paymentModal" >
         {open == 'MasterCard' ?
           <MasterCard />
           :
-          <MasterCard PrivacyPolicyCard
+          <MasterCard
+           PrivacyPolicyCard
             label2={'請確認以及同意後繼續使用Buyee服務。'}
             label={`Buyone的隱私政策有進行改訂`} />
         }
@@ -79,7 +78,6 @@ function ConfirmAddress() {
           <CheckBox label={`設置為默認收貨地址`} />
 
           <div className='confirmContainer'>
-
             <MyButton
               label='確 認'
               className={'confirmationBtn'}
@@ -96,17 +94,17 @@ function ConfirmAddress() {
         </div>
 
       </div >
-      <div className='createAddressSection' style={{ flexDirection: 'column', alignItems: 'flex-start', padding: '0px 7vw' }}>
+      <div className='createAddressSection makeColumn' >
         <OrderHeader />
         <Cart />
         <Cart />
         <div className='totalCost'>
           <div style={{ margin: '1.5vw 0vw' }}>
             <p className='totalCost'>$780.50</p>
-            <p className='totalCost orderHeaderBtn' style={{ marginTop: '0px', marginBottom: '0px' }}>合共計算（含運費):</p>
+            <p className='totalCost orderHeaderBtn removeMargin' >合共計算（含運費):</p>
           </div>
-          <p className='totalCost orderHeaderBtn' style={{ marginTop: '0px', marginBottom: '0px' }}>寄送至：香港特別行政區香港島東區西灣河，興民街28-36號，地下E鋪A部份</p>
-          <p className='totalCost orderHeaderBtn' style={{ marginTop: '0px', marginBottom: '0px' }}>收貨人：MD 55025508</p>
+          <p className='totalCost orderHeaderBtn removeMargin' >寄送至：香港特別行政區香港島東區西灣河，興民街28-36號，地下E鋪A部份</p>
+          <p className='totalCost orderHeaderBtn removeMargin' >收貨人：MD 55025508</p>
         </div>
         <div
           onClick={() => setOpen('PrivacyPolicyCard')}
