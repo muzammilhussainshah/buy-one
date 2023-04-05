@@ -7,7 +7,7 @@ import Slider from 'react-slick';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import {   TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 // import Button from '@material-ui/core/Button';
 import {
   collection,
@@ -24,7 +24,7 @@ import MyButton from '../../components/MyButton';
 import useDrag from '../../components/useDrage';
 import { Card } from '../../components/card';
 import { db } from '../../firebase';
-import { Cart } from './Components/Components';
+import { Cart, SliderComp } from './Components/Components';
 import '../../App.css'
 import { bannerContainer, bannerSection, HorizontalSliderContainer, inputStyle, leftPanel, leftPanelButtonContainer, leftPanelButtonStyle, leftPanelContainer, leftPanelHeaderSection, leftPanelHeading, leftPanelRightIcon, leftPanelstyle, newContainer, newText, rightButton, searchBar, searchBarBtn, searchBarContainer, searchBarSection, sliderContainer, sliderHeading, sliderSection } from './styles';
 import { Header } from '../../components/Header';
@@ -33,7 +33,7 @@ import { Header } from '../../components/Header';
 
 function Home() {
   const [selected, setSelected] = useState("");
-   const [docs, setDocs] = useState([]);
+  const [docs, setDocs] = useState([]);
   const [lastVisible, setLastVisible] = useState(null);
   const [loader, setLoader] = useState(false);
   const { dragStart, dragStop, dragMove, dragging } = useDrag();
@@ -76,16 +76,6 @@ function Home() {
   };
 
 
-  var settings = {
-    arrows: false,
-    focusOnSelect: true,
-    dots: false,
-    infinite: false,
-    slidesToShow: 2.5,
-    slidesToScroll: 1,
-    speed: 500
-
-  };
 
   // NOTE: for drag by mouse
   const handleDrag = ({ scrollContainer }) => (
@@ -103,11 +93,11 @@ function Home() {
     }
     setSelected(selected !== itemId ? itemId : "");
   };
- 
+
 
   return (
     <div style={{ backgroundColor: Colors.bg }}>
-     
+
       <div
         style={searchBarSection()}
       >
@@ -204,8 +194,8 @@ function Home() {
           </div>
         </div>
       </div>
-
-      <div style={bannerSection()}
+      <SliderComp />
+      {/* <div style={bannerSection()}
       >
         <Slider {...settings} pagination={false}>
           {[0, 0, 0, 0, 0, 0].map(() => {
@@ -226,7 +216,7 @@ function Home() {
             )
           })}
         </Slider>
-      </div>
+      </div> */}
       <div
         style={{ width: '95%', margin: '0px auto', backgroundColor: Colors.white }}
       >

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import OutlinedInput from '@mui/material/OutlinedInput';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
@@ -45,17 +45,38 @@ export const CustomInput = ({ inputTitle, placeholder, multiLine, helperText, in
 
 
 
-export const Cart = () => {
+export const Cart = ({ checkBox, label }) => {
     const [count, setCount] = useState(0)
+    const [checkState, setcheckState] = useState(true)
+
+    const handleCheck = () => { setcheckState(!checkState) }
+
     return (
         <>
-            <div className='orderHeader' style={{ justifyContent: 'flex-start' }}>
-                <p className='orderHeaderBtn'>店鋪: 蘇寧易購官方旗艦店</p>
-                <p className='orderHeaderBtn' style={{ marginLeft: '1vw', marginRight: '1vw' }}> <MoodIcon sx={{ fontSize: '1.5vw', color: 'green', }} /> </p>
+            <div
+                onClick={handleCheck}
+                className='orderHeader' style={{ justifyContent: 'flex-start' }}>
+                {checkBox ?
+                    <CheckBox
+                        state={checkState}
+                        label={label}
+                        className="marginAdd1 orderHeaderBtn" />
+                    :
+                    <p className='orderHeaderBtn'>店鋪: 蘇寧易購官方旗艦店</p>
+                }
+                <p className='orderHeaderBtn' style={{ marginLeft: '1vw', marginRight: '1vw', display: 'flex', justifyContent: 'center' }}> <MoodIcon sx={{ fontSize: '1.5vw', color: 'green', }} /> </p>
                 <p className='orderHeaderBtn makeAnchr'>customer service</p>
             </div>
-            <div className='cartContainer' >
+            <div
+                className={checkState ? `disablecartContainer` : `cartContainer`} >
                 <div className="productImgContainer">
+                    {checkBox &&
+                        <div
+                            onClick={handleCheck}
+                            className='productImgCheckBox'>
+                            <CheckBox state={checkState} />
+                        </div>
+                    }
                     <div className='imgContainer'>< PermMediaIcon sx={{ fontSize: '5vw', color: Colors.tabInactive }} /></div>
                 </div>
                 <div className="productImgContainer2">
@@ -77,11 +98,21 @@ export const Cart = () => {
                     <p className='orderHeaderBtn priceText'   >$760.00</p>
                 </div>
                 <div className='pricing'>
-                    <div onClick={() => { if (count > 0) setCount(count - 1) }}
+                    <div onClick={() => {
+                        if (count > 0) {
+                            setcheckState(checkState)
+                            setCount(count - 1)
+                        }
+                    }}
                         className='makeBox makeAnchr'><RemoveOutlinedIcon sx={{ fontSize: '1.5vw' }} /></div>
                     <div className='makeBox'>{count}</div>
                     <div
-                        onClick={() => { if (count < 10) setCount(count + 1) }}
+                        onClick={() => {
+                            if (count < 10) {
+                                setcheckState(checkState)
+                                setCount(count + 1)
+                            }
+                        }}
                         className='makeBox makeAnchr'><AddIcon sx={{ fontSize: '1.5vw' }} /></div>
                 </div>
                 <div className='pricing'>
@@ -95,26 +126,36 @@ export const Cart = () => {
 
 
 
-export const OrderHeader = () => {
+export const OrderHeader = ({ ShoppingCart }) => {
     return (
         <>
-            <p className='AddressHeading2'>
-                確認訂單信息
-            </p>
+            {!ShoppingCart &&
+
+                <p className='AddressHeading2'>
+                    確認訂單信息
+                </p >}
             <div className='orderHeader'>
-                <p className='orderHeaderBtn'>店鋪名稱</p>
+                {ShoppingCart ?
+                    <CheckBox label={`全選`} className="marginAdd1 orderHeaderBtn" />
+                    :
+                    <p className='orderHeaderBtn'>店鋪名稱</p>
+                }
                 <p className='orderHeaderBtn'>產品內容</p>
                 <p className='orderHeaderBtn'>單價</p>
                 <p className='orderHeaderBtn'>數量</p>
                 <p className='orderHeaderBtn'>金額</p>
             </div>
         </>
+
     )
 }
 
 
-export const CheckBox = ({ label }) => {
+export const CheckBox = ({ label, className, state }) => {
     const [check, setCheck] = useState(true)
+
+    useEffect(() => { setCheck(state) }, [state])
+
     return (
         <button
             onClick={() => setCheck(!check)}
@@ -125,7 +166,9 @@ export const CheckBox = ({ label }) => {
                 :
                 <CheckBoxOutlinedIcon sx={{ fontSize: '2.5vw' }} />
             }
-            <p className='AddressInputTitle'>{label}</p>
+            {label &&
+                <p className={`AddressInputTitle ${className}`}>{label}</p>
+            }
         </button>
     )
 }
