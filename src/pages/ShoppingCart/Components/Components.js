@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MyButton from '../../../components/MyButton';
 export const CostContainer = () => {
 
@@ -10,7 +10,7 @@ export const CostContainer = () => {
                 <p className='AddressHeading2 orderHeaderBtn '>
                     已選產品
                 </p>
-                <p className='AddressHeading2 priceText blue' style={{margin:"0px .5vw"}}>
+                <p className='AddressHeading2 priceText blue' style={{ margin: "0px .5vw" }}>
                     1
                 </p>
                 <p className='AddressHeading2 orderHeaderBtn'>

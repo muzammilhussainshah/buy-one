@@ -184,6 +184,7 @@ function Home() {
                       itemId={id}
                       key={id}
                       onClick={handleItemClick(id)}
+                      draggingEnabled={true}
                       selected={id === selected}
                     />
                   )
@@ -195,28 +196,6 @@ function Home() {
         </div>
       </div>
       <SliderComp />
-      {/* <div style={bannerSection()}
-      >
-        <Slider {...settings} pagination={false}>
-          {[0, 0, 0, 0, 0, 0].map(() => {
-            return (
-              <div
-              >
-                <div style={{ height: '11vw', backgroundColor: Colors.gray, width: '34vw', display: 'flex', fontSize: '1.4vw' }}>
-                  <div style={{ backgroundColor: 'black', padding: '0px 0.1vw', height: '2vw' }}>
-                    <p style={{ textDecoration: 'underline', fontWeight: 'bold', color: 'white', margin: 0, fontSize: '1.5vw' }}>
-                      ad
-                    </p>
-                  </div>
-                  <p style={{ margin: 'auto', fontWeight: 'lighter' }}>
-                    ADVERTISING BANNER
-                  </p>
-                </div>
-              </div>
-            )
-          })}
-        </Slider>
-      </div> */}
       <div
         style={{ width: '95%', margin: '0px auto', backgroundColor: Colors.white }}
       >
@@ -236,7 +215,6 @@ function Home() {
             hasMore={true}
             style={{
               display: 'flex', flexWrap: 'wrap', padding: '.5vw',
-              //  maxHeight: '100vw' 
             }}
             className='scrollBar'
           >

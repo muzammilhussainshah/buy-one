@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { VisibilityContext } from "react-horizontal-scrolling-menu";
+import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
+import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
+import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 
 import Colors from "../styles/Colors";
 import MyButton from "./MyButton";
 import '../App.css'
+import { absStar } from "./styles";
 
-export function Card({ disableBtn, icon, itemId, price, title, oldPrice, ProductName, onClick, selected }) {
+export function Card({ disableBtn, icon, itemId, price, title, oldPrice, ProductName, onClick, starEnable, selected }) {
+  const [stared, setStared] = useState(false)
   const visibility = React.useContext(VisibilityContext);
 
   const visible = visibility.isItemVisible(itemId);
@@ -15,16 +20,46 @@ export function Card({ disableBtn, icon, itemId, price, title, oldPrice, Product
     <>
       <div
         className="cartHover"
-        onClick={() => onClick && onClick()}
+
+        onClick={() => {
+
+          if (starEnable) {
+            setStared(!stared)
+          } else {
+
+          }
+          onClick && onClick()
+        }}
         role="button"
-        style={{ height: '24vw', width: '15vw', padding: '.5vw', borderRadius: '1vw', display: "flex", flexDirection: 'column', margin: '1.5vw' }}>
-        <div style={{ height: '85%', width: '17.5%', position: "absolute" }}>
-          <div style={{ color: 'transparent' }}>
-            {JSON.stringify(visible)}
+        style={{
+          height: '24vw', width: '15vw', padding: '.5vw', borderRadius: '1vw', display: "flex", flexDirection: 'column', margin: '1.5vw',
+          // backgroundColor:'rgba(0,0,0,0.7'
+          opacity: !starEnable ? 1 : stared ? 1 : 0.5
+
+        }}>
+        {starEnable == true &&
+          < div
+            style={{
+              position: 'absolute', zIndex: 1,
+              marginLeft: '.5vw',
+              marginTop: '.5vw'
+            }}
+          >
+            {stared ?
+              <StarRateRoundedIcon sx={absStar} /> :
+              <StarOutlineRoundedIcon sx={absStar} />
+            }
           </div>
-          <div style={{ color: 'transparent' }}>
-            {JSON.stringify(!!selected)}</div>
-        </div>
+        }
+        {!starEnable &&
+          <div style={{ height: '85%', width: '17.5%', position: "absolute" }}>
+            <div style={{ color: 'transparent' }}>
+              {JSON.stringify(visible)}
+            </div>
+            <div style={{ color: 'transparent' }}>
+              {JSON.stringify(!!selected)}</div>
+          </div>
+        }
         <div style={{ display: "flex", flex: 7, overflow: "hidden" }}>
           <img src={icon} alt="My Image" style={{ height: '100%', width: "100%", }} />
         </div>
@@ -43,15 +78,15 @@ export function Card({ disableBtn, icon, itemId, price, title, oldPrice, Product
             {!disableBtn &&
               <div style={{ display: 'flex', flex: 1, justifyContent: "center", alignItems: 'flex-end' }}>
                 <MyButton label={
-                  <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1vw' }}
+                  <span style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', fontSize: '0.9vw' }}
                   >
-
-                    Add to Cart</span>} style={{ backgroundColor: Colors.gray, width: '100%', borderWidth: '0px', height: "55%" }} />
+                    <LocalMallOutlinedIcon sx={{ fontSize: 'inherit' }} />
+                    加入購物車</span>} style={{ backgroundColor: Colors.gray, width: '100%', borderWidth: '0px', height: "55%" }} />
               </div>
             }
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 }

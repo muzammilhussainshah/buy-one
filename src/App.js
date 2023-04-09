@@ -9,6 +9,7 @@ import { Header } from "./components/Header";
 import ConfirmAddress from "./pages/ConfirmAddress/ConfirmAddress";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import Colors from "./styles/Colors";
+import WishList from "./pages/WishList/WishList";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/ConfirmAddress" element={<ConfirmAddress />}></Route>
         <Route path="/ShoppingCart" element={<ShoppingCart />}></Route>
+        <Route path="/WishList" element={<WishList />}></Route>
         {/* <Route path="/about" element={<About />}></Route>
         <Route path="/Business" element={<Business />}></Route>
         <Route path="/company" element={<Company />}></Route>
