@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-import { VisibilityContext } from "react-horizontal-scrolling-menu";
 import StarOutlineRoundedIcon from '@mui/icons-material/StarOutlineRounded';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
+import { VisibilityContext } from "react-horizontal-scrolling-menu";
 
 import Colors from "../styles/Colors";
 import MyButton from "./MyButton";
-import '../App.css'
 import { absStar } from "./styles";
+import '../App.css'
 
 export function Card({ disableBtn, icon, itemId, price, title, oldPrice, ProductName, onClick, starEnable, selected }) {
   const [stared, setStared] = useState(false)
@@ -20,23 +20,12 @@ export function Card({ disableBtn, icon, itemId, price, title, oldPrice, Product
     <>
       <div
         className="cartHover"
-
         onClick={() => {
-
-          if (starEnable) {
-            setStared(!stared)
-          } else {
-
-          }
+          if (starEnable) setStared(!stared)
           onClick && onClick()
         }}
         role="button"
-        style={{
-          height: '24vw', width: '15vw', padding: '.5vw', borderRadius: '1vw', display: "flex", flexDirection: 'column', margin: '1.5vw',
-          // backgroundColor:'rgba(0,0,0,0.7'
-          opacity: !starEnable ? 1 : stared ? 1 : 0.5
-
-        }}>
+        style={{ height: '24vw', width: '15vw', padding: '.5vw', borderRadius: '1vw', display: "flex", flexDirection: 'column', margin: '1.5vw', opacity: !starEnable ? 1 : stared ? 1 : 0.5 }}>
         {starEnable == true &&
           < div
             style={{

@@ -1,16 +1,13 @@
 import React, {
-    useEffect,
     useState
 } from 'react';
-import './style.css'
-import { OrderHeader } from '../ConfirmAddress/Components/Components';
+
 import { cartDummyData } from '../Home/data';
 import { Card } from '../../components/card';
-import useDrag from '../../components/useDrage';
-// import { ScrollMenu } from 'react-horizontal-scrolling-menu/dist/types';
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import { sliderSection } from '../Home/styles';
 import { SliderComp } from '../Home/Components/Components';
+import useDrag from '../../components/useDrage';
+import './style.css'
 
 function WishList() {
     const [selected, setSelected] = useState("");
@@ -23,9 +20,6 @@ function WishList() {
         }
         setSelected(selected !== itemId ? itemId : "");
     };
-
-
-    // NOTE: for drag by mouse
     const handleDrag = ({ scrollContainer }) => (
         ev
     ) =>
@@ -41,12 +35,7 @@ function WishList() {
                     心願清單
                     <p className='allProduct fontWeightNormal'>（全部20）</p>
                 </div>
-                <div className='cartHeading productImgContainer'>
-                    {/* <CostContainer /> */}
-                </div>
-
             </div >
-            {/* <div style={sliderSection()}  > */}
             <div
                 style={{ width: '100%' }}
                 onMouseLeave={dragStop}>
@@ -55,8 +44,7 @@ function WishList() {
                     onMouseUp={() => dragStop}
                     onMouseMove={handleDrag}
                 >
-                    <div className='createAddressSection starCardContainer'
-                    >
+                    <div className='createAddressSection starCardContainer'>
                         {
                             cartDummyData?.map((item) => {
                                 const { id, icon, title, ProductName, price, oldPrice } = item

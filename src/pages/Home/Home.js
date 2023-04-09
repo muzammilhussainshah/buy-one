@@ -200,26 +200,20 @@ function Home() {
         style={{ width: '95%', margin: '0px auto', backgroundColor: Colors.white }}
       >
         <div style={{ height: '5vw', display: "flex", alignItems: 'center' }}>
-
           <h3 style={{ margin: '2vw', fontSize: '1.5vw', fontWeight: 'normal' }}>{`猜你喜歡`}</h3>
           <div style={{ height: '1.8vw', backgroundColor: Colors.red, width: '3.2vw', borderRadius: 5, display: 'flex', justifyContent: "center", alignItems: 'center' }}>
             <p style={{ fontSize: '.9vw', color: Colors.white }}>NEW!</p>
           </div>
-
-
         </div>
         <div >
           <InfiniteScroll
             dataLength={docs.length}
             next={loadMore}
             hasMore={true}
-            style={{
-              display: 'flex', flexWrap: 'wrap', padding: '.5vw',
-            }}
+            style={{ display: 'flex', flexWrap: 'wrap', padding: '.5vw', }}
             className='scrollBar'
           >
             {docs.map((doc, index) => {
-
               const { id, icon, title, ProductName, price, oldPrice } = doc.data().cartdata
               return (
                 <>
