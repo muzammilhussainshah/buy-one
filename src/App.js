@@ -1,7 +1,8 @@
 // import './../../App.css';
 import {
   Route,
-  Routes
+  Routes,
+  useLocation
 } from "react-router-dom";
 import Home from '../src/pages/Home/Home';
 import { Footer } from "./components/Footer";
@@ -12,6 +13,8 @@ import Colors from "./styles/Colors";
 import WishList from "./pages/WishList/WishList";
 
 function App() {
+  const location = useLocation();
+  console.log(location, 'locationlocation')
   return (
     <div style={{ backgroundColor: Colors.bg }}>
       <Header />
@@ -20,14 +23,9 @@ function App() {
         <Route path="/ConfirmAddress" element={<ConfirmAddress />}></Route>
         <Route path="/ShoppingCart" element={<ShoppingCart />}></Route>
         <Route path="/WishList" element={<WishList />}></Route>
-        {/* <Route path="/about" element={<About />}></Route>
-        <Route path="/Business" element={<Business />}></Route>
-        <Route path="/company" element={<Company />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/news" element={<News />}></Route> */}
       </Routes>
       {/* <Home /> */}
-      <Footer />
+      <Footer location={location} />
     </div>
   );
 }

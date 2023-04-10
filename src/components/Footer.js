@@ -1,10 +1,16 @@
 import React from 'react';
 import Colors from '../styles/Colors';
+import { SliderComp } from '../pages/Home/Components/Components';
 
-export const Footer = () => {
+export const Footer = ({ location }) => {
     return (
         <>
-            <div style={{ height: '8vw', backgroundColor: Colors.white, width: '100%', margin: '2vw auto 0vw auto', display: 'flex', fontSize: '1.4vw', padding: '0vw 5%' }}>
+            {location?.pathname !== '/' &&
+                <div style={{ backgroundColor: Colors.white, marginTop: '2vw' }}>
+                    <SliderComp />
+                </div>
+            }
+            <div style={{ height: '8vw', backgroundColor: Colors.white, width: '100%', margin: '0vw auto 0vw auto', display: 'flex', fontSize: '1.4vw', padding: '0vw 5%' }}>
                 <div style={{ display: 'flex', flex: 1, alignItems: 'center', }}>
                     <img src={require('../assets/50.png')} alt="My Image" style={{ height: '4vw', width: "20%", objectFit: 'contain' }} />
                     <img src={require('../assets/award-friendly.png')} alt="My Image" style={{ height: '5vw', width: "20%", objectFit: 'contain' }} />

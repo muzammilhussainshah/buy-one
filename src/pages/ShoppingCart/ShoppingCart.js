@@ -44,7 +44,6 @@ function ShoppingCart() {
           <CostContainer />
         </div >
       </div>
-      <SliderComp />
     </>
   );
 }

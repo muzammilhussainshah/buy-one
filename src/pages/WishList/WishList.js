@@ -8,6 +8,7 @@ import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import { SliderComp } from '../Home/Components/Components';
 import useDrag from '../../components/useDrage';
 import './style.css'
+import Colors from '../../styles/Colors';
 
 function WishList() {
     const [selected, setSelected] = useState("");
@@ -66,8 +67,7 @@ function WishList() {
                         }
                     </div>
                 </ScrollMenu>
-            </div >
-            <SliderComp />
+            </div > 
         </>
     );
 }
