@@ -35,7 +35,7 @@ function ConfirmAddress() {
           <MasterCard />
           :
           <MasterCard
-           PrivacyPolicyCard
+            PrivacyPolicyCard
             label2={'請確認以及同意後繼續使用Buyee服務。'}
             label={`Buyone的隱私政策有進行改訂`} />
         }
@@ -94,7 +94,7 @@ function ConfirmAddress() {
         </div>
 
       </div >
-      <div className='createAddressSection makeColumn' >
+      <div className='createAddressSection makeColumn'  style={{borderBottom:'0px'}}>
         <OrderHeader />
         <Cart />
         <Cart />

@@ -28,6 +28,7 @@ import { Cart, SliderComp } from './Components/Components';
 import '../../App.css'
 import { bannerContainer, bannerSection, HorizontalSliderContainer, inputStyle, leftPanel, leftPanelButtonContainer, leftPanelButtonStyle, leftPanelContainer, leftPanelHeaderSection, leftPanelHeading, leftPanelRightIcon, leftPanelstyle, newContainer, newText, rightButton, searchBar, searchBarBtn, searchBarContainer, searchBarSection, sliderContainer, sliderHeading, sliderSection } from './styles';
 import { Header } from '../../components/Header';
+import SearchSection from '../../components/SearchSection';
 // import { styles } from './styles';
 
 
@@ -98,44 +99,7 @@ function Home() {
   return (
     <div style={{ backgroundColor: Colors.bg }}>
 
-      <div
-        style={searchBarSection()}
-      >
-        <div
-          style={searchBarContainer()}
-        >
-          <div style={searchBar()}>
-            <TextField
-              variant="standard"
-              placeholder='搜尋商品'
-              sx={inputStyle()}
-              InputProps={{
-                disableUnderline: true,
-                style: { fontSize: '1vw' }
-              }}
-            />
-            <button
-              className='searchButtonsHover'
-              style={searchBarBtn()}>
-              {`搜尋`}
-            </button>
-          </div>
-        </div>
-        <div
-          style={leftPanelButtonContainer()}
-        >
-          {['食品及飲品', '酒類', '美食預訂', '調味料', '水果', '醬料', '個人護理', '寵物食品', '更多'].map((item) => {
-            return (
-              <MyButton
-                style={{ fontSize: '0.9vw', border: '0px', }}
-                label={<span style={{ margin: 0 }}>{item}</span>} />
-            )
-          })}
-          <MyButton
-            style={rightButton()}
-            label="登 " />
-        </div>
-      </div>
+      <SearchSection />
       <div
         style={leftPanel()}
       >

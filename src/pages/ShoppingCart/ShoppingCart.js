@@ -31,7 +31,7 @@ function ShoppingCart() {
         <Cart checkBox label={`店鋪: 蘇寧易購官方旗艦店`} />
         <Cart checkBox label={`店鋪: 蘇寧易購官方旗艦店`} />
       </div >
-      <div className='confirmAddressContainer createAddressSection ' >
+      <div className='confirmAddressContainer createAddressSection ' style={{borderBottom:'0px'}} >
         <div className='cartHeading' style={{}} >
           <CheckBox
             label={`全選`}

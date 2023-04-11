@@ -11,6 +11,7 @@ import ConfirmAddress from "./pages/ConfirmAddress/ConfirmAddress";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import Colors from "./styles/Colors";
 import WishList from "./pages/WishList/WishList";
+import ProductCart from "./pages/ProductCart/ProductCart";
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
         <Route path="/ConfirmAddress" element={<ConfirmAddress />}></Route>
         <Route path="/ShoppingCart" element={<ShoppingCart />}></Route>
         <Route path="/WishList" element={<WishList />}></Route>
+        <Route path="/ProductCart" element={<ProductCart />}></Route>
       </Routes>
       {/* <Home /> */}
       <Footer location={location} />
