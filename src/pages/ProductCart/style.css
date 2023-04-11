@@ -111,6 +111,7 @@
 
  .ProductCartBtn:hover {
      background-color: #C2D7FF;
+     cursor: pointer;
      border: .2vw solid #2E58A6;
      color: #2E58A6;
  }
@@ -125,6 +126,7 @@
      height: 2.5vw;
      border: 0px;
      display: flex;
+     font-size: 1vw;
      justify-content: center;
      align-items: center;
      padding: 0vw 1vw;
@@ -166,7 +168,6 @@
      width: 90%;
      margin: .5vw 0px 0.5vw 1.5vw;
      display: flex;
-     background-color: red;
      justify-content: space-between;
  }
 

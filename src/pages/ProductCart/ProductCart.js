@@ -112,7 +112,8 @@ function WishList() {
 
                 </div>
 
-                <p className='AddressInputTitle2 addMarginY wishListWithStar' ><StarRateRoundedIcon sx={{ color: Colors.primary }} />{`心願清單(2082人氣)`}</p>
+                <p className='AddressInputTitle2 addMarginY wishListWithStar' >
+                    <StarRateRoundedIcon sx={{ color: Colors.primary, fontSize: '1.5vw' }} />{`心願清單(2082人氣)`}</p>
 
                 <MyButton
                     leftIcon={<InfoRoundedIcon sx={{ fontSize: '1.2vw', color: Colors.primary, margin: '0px 1vw 0px 0px' }} />}
