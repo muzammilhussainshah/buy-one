@@ -22,7 +22,7 @@
  }
 
  .AddressInputTitle {
-     font-size: 1.2vw;
+     font-size: 1.03vw;
      font-weight: normal;
      margin: .5vw 0px;
 
@@ -204,7 +204,7 @@
  .makeBox {
      height: 2vw;
      min-width: 2vw;
-     margin: 20px 0px;
+     margin: 1.5vw 0px;
      border: 1px solid #707070;
      color: #707070;
      display: flex;

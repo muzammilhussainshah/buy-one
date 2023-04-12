@@ -94,7 +94,7 @@ function ConfirmAddress() {
         </div>
 
       </div >
-      <div className='createAddressSection makeColumn'  style={{borderBottom:'0px'}}>
+      <div className='createAddressSection makeColumn' style={{ borderBottom: '0px' }}>
         <OrderHeader />
         <Cart />
         <Cart />

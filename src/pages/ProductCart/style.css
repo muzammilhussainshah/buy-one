@@ -187,3 +187,8 @@
      align-items: center;
      flex-direction: column;
  }
+
+ .nationMargin {
+     margin: 3vw 0px 1vw 0px;
+     /* style={{ margin: "3vw 0px 1vw 0px" }} */
+ }

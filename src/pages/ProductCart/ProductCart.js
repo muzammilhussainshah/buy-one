@@ -21,7 +21,7 @@ import {
 } from './Components/Components';
 import './style.css'
 
-function WishList() {
+function ProductCart() {
     return (
         <>
             <SearchSection />
@@ -172,4 +172,4 @@ function WishList() {
 }
 
 
-export default WishList;
+export default ProductCart;

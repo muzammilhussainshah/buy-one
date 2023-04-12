@@ -15,21 +15,21 @@ export const ProductImg = () => {
     )
 }
 
-export const DropDown = ({ maxWidth }) => {
+export const DropDown = ({ maxWidth, autoWidth, height }) => {
     const [age, setAge] = React.useState('');
 
     const handleChange = (event) => { setAge(event.target.value); };
     return (
-        <FormControl sx={{ maxWidth: maxWidth && maxWidth }}>
+        <FormControl sx={{ maxWidth: maxWidth && maxWidth, width: autoWidth ? autoWidth : 'auto' }}>
             <Select
                 value={age}
                 onChange={handleChange}
                 displayEmpty
                 sx={{
-                    height: '2vw',
+                    height: height ? height : '2vw',
                     fontSize: '1vw',
                     borderRadius: '0px',
-                    margin: '.5vw 0px 0vw 1.5vw',
+                    margin: autoWidth ? '0vw' : '.5vw 0px 0vw 1.5vw',
                     '.MuiSelect-icon': {
                         fontSize: '2vw',
                     },

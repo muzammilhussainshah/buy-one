@@ -1,0 +1,25 @@
+ .profileSection {
+     width: 100%;
+     display: flex;
+ }
+
+ .profileContainer {
+     background-color: #F3F3F3;
+     height: 12vw;
+     width: 12vw;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .profileBodyContainer {
+     padding: 0px 1vw;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+ }
+ .width90{
+    width: 92%; 
+    margin: 2.3vw 0px ;
+ }
