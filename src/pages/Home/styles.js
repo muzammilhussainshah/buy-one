@@ -2,9 +2,9 @@ import Colors from "../../styles/Colors"
 
 export const searchBarSection = () => ({ height: '9vw', display: 'flex', flexDirection: 'column' })
 
-export const searchBarContainer = () => ({ display: 'flex', flex: 6.5, justifyContent: "center", alignItems: "center", })
+export const searchBarContainer = () => ({ display: 'flex', flex: 6.5, justifyContent: "center", height: "100%", alignItems: "center", })
 
-export const searchBar = () => ({ height: "60%", width: "50%", backgroundColor: 'white', display: 'flex', justifyContent: "space-between", alignItems: "center", borderRadius: '5vw' })
+export const searchBar = (width, outLine) => ({ height: "60%", width: width, backgroundColor: 'white', display: 'flex', justifyContent: "space-between", alignItems: "center", borderRadius: '5vw', border: `${outLine ? '1px' : "0px"} solid black` })
 
 export const inputStyle = () => ({ display: "flex", flex: 1, margin: '0vw 0vw 0vw 2vw', justifyContent: 'center', })
 

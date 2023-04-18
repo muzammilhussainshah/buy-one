@@ -1,0 +1,73 @@
+ .myStoreImg {
+     height: 15vw;
+     background-color: #f3f3f3;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .myStoreImgIcon {
+     font-size: 10vw !important;
+     color: #898989;
+ }
+
+ .emptyStoreLeftSide {
+     display: flex;
+     width: 100%;
+     font-size: 2vw;
+     flex-direction: column;
+     font-weight: bold;
+     flex: 3.5;
+ }
+
+ .emptyStoreRightSide {
+     display: flex;
+     height: 10vw;
+     width: 100%;
+     flex: 6.5;
+     background-color: red;
+ }
+
+ .emptyStoreTitleText {
+     font-weight: bold;
+     display: flex;
+     width: 85%;
+     align-items: center;
+     font-size: 1.1vw;
+     margin: .5vw 0px;
+ }
+
+ .OnlineStoreLeftSideSearchContainer {
+     min-height: 5vw;
+     display: flex;
+     flex: 1;
+     overflow: hidden;
+     width: 85%;
+ }
+
+ .StoreCategoryContainer {
+     margin: 0.5vw 0px;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     width: 100%;
+ }
+
+ .StoreCategoryIcon {
+     font-size: 1.5vw !important;
+     margin: 0px .2vw;
+ }
+
+ .rankingContainer {
+     border: 1px solid black;
+     height:  50.500651041666664vw;
+     
+     width: 85%;
+ }
+
+ .rankingContainerHeader {
+     height: 2.5vw;
+     /* height: 54px; */
+     background-color: #2e58a6;
+ }

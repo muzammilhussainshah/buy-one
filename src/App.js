@@ -13,6 +13,7 @@ import Colors from "./styles/Colors";
 import WishList from "./pages/WishList/WishList";
 import ProductCart from "./pages/ProductCart/ProductCart";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import OnlineStore from "./pages/OnlineStore/OnlineStore";
 
 function App() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/WishList" element={<WishList />}></Route>
         <Route path="/ProductCart" element={<ProductCart />}></Route>
         <Route path="/EditProfile" element={<EditProfile/>}></Route>
+        <Route path="/OnlineStore" element={<OnlineStore/>}></Route>
       </Routes>
       {/* <Home /> */}
       <Footer location={location} />
