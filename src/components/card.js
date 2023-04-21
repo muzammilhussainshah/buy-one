@@ -65,7 +65,7 @@ export function Card({ disableBtn, icon, itemId, price, title, oldPrice, Product
               <p style={{ margin: 0, fontSize: '1vw' }}>{oldPrice}</p>
             </div>
             {!disableBtn &&
-              <div style={{ display: 'flex', flex: 1, justifyContent: "center", alignItems: 'flex-end' }}>
+              <div style={{ backgroundColor: "red", position: 'absolute', zIndex: 3, width: '150px', bottom: '9%', marginLeft: '9%' }}>
                 <MyButton label={
                   <span style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', fontSize: '0.9vw' }}
                   >

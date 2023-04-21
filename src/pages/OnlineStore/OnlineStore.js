@@ -14,6 +14,14 @@ import EmailIcon from '@mui/icons-material/Email';
 import './style.css'
 import SearchSection, { SearchBarWithBtn } from '../../components/SearchSection';
 import { StoreCategory } from './Components/Components';
+export const RankingCart = () => {
+    return (
+        <div className='RankingCartContainer'>
+            <div className='RankingCartImgContainer'></div>
+            <div className='RankingCartBodyContainer'></div>
+        </div>
+    )
+}
 function OnlineStore() {
 
     return (
@@ -56,17 +64,21 @@ function OnlineStore() {
                         <StoreCategory title={'Tech | 科技系列'} />
                         <StoreCategory title={'Design | 設計系列'} />
                         <StoreCategory title={'Outdoor | 戶外系列'} />
-                        <div className='rankingContainer'>
-                            <div className='rankingContainerHeader'></div>
+                        <div className='rankingContainer addMarginY addMarginY2'>
+                            <div className='rankingContainerHeader'>
+                                <p className='rightPanelHeading AddressInputTitle2 priceText'>{`本店推薦`}</p>
+                            </div>
+                            <RankingCart />
                         </div>
                     </div>
-                    <div className='emptyStoreRightSide'></div>
+                    <div className='emptyStoreRightSide'>
+                    </div>
                 </div>
 
                 {/* <p></p> */}
                 {/* <div className='createAddressSection fragHeading priceText'>
                 EMPTY Online Store
-                </div> */}
+            </div> */}
             </div>
         </>
     );

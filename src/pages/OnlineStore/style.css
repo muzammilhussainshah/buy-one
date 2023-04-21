@@ -61,13 +61,41 @@
 
  .rankingContainer {
      border: 1px solid black;
-     height:  50.500651041666664vw;
-     
+     height: 50.500651041666664vw;
+
      width: 85%;
  }
 
  .rankingContainerHeader {
      height: 2.5vw;
-     /* height: 54px; */
+     display: flex;
+     align-items: center;
+     color: #FFFFFF;
      background-color: #2e58a6;
+ }
+
+ .addMarginY2 {
+     margin-top: 2vw !important;
+ }
+
+ .RankingCartContainer {
+     display: flex;
+     padding: 1.2vw;
+     height: 8vw;
+     width: 100%;
+     background-color: red;
+ }
+
+ .RankingCartImgContainer {
+
+     display: flex;
+     flex: 2.5;
+     background-color: blue;
+ }
+
+ .RankingCartBodyContainer {
+
+     display: flex;
+     flex: 7.5;
+     background-color: pink;
  }
