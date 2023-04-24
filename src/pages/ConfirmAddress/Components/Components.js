@@ -48,6 +48,7 @@ export const CustomInput = ({ inputTitle, placeholder, multiLine, helperText, in
 export const Cart = ({ checkBox, label }) => {
     const [count, setCount] = useState(0)
     const [checkState, setcheckState] = useState(true)
+    const [price, setPrice] = useState('760.00')
 
     const handleCheck = () => { setcheckState(!checkState) }
 
@@ -86,7 +87,7 @@ export const Cart = ({ checkBox, label }) => {
                         display: 'flex', justifyContent: "space-between"
                     }}>
                         <p className='orderHeaderBtn simple'>顏色分類：淺棕色</p>
-                        <p className='orderHeaderBtn simple' style={{ textAlign: 'end' }}>修改</p>
+                        <p className='orderHeaderBtn simple makeAnchr' style={{ textAlign: 'end' }}>修改</p>
                     </div>
                     <div>
                         <p className='orderHeaderBtn simple' style={{ marginBottom: '0px' }}>移入收藏夾</p>
@@ -95,7 +96,7 @@ export const Cart = ({ checkBox, label }) => {
 
                 </div>
                 <div className='pricing'>
-                    <p className='orderHeaderBtn priceText'   >$760.00</p>
+                    <p className='orderHeaderBtn priceText'   >${price}</p>
                 </div>
                 <div className='pricing'>
                     <div onClick={() => {
@@ -116,7 +117,7 @@ export const Cart = ({ checkBox, label }) => {
                         className='makeBox makeAnchr'><AddIcon sx={{ fontSize: '1.5vw' }} /></div>
                 </div>
                 <div className='pricing'>
-                    <p className='orderHeaderBtn priceText blue'   >$760.00</p>
+                    <p className='orderHeaderBtn priceText blue'   >{(price * count).toFixed(2)}</p>
                 </div>
             </div>
         </>
