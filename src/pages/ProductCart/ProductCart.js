@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import SearchIcon from '@mui/icons-material/Search';
 import MoodIcon from '@mui/icons-material/Mood';
@@ -22,9 +22,27 @@ import {
 import './style.css'
 
 function ProductCart() {
+    const [isZoomed, setIsZoomed] = useState(false);
+
+    const handleImageClick = () => {
+        setIsZoomed(true);
+    };
+
+    const handleCloseClick = () => {
+        setIsZoomed(false);
+    };
     return (
         <>
             <SearchSection />
+            {isZoomed && (
+                <div className="image-modal">
+                    {/* <PhotoLibraryIcon sx={{ fontSize: '6vw', color: Colors.tabInactive }} /> */}
+                    <img src={require('../../assets/BUYONE-01.png')} alt="Zoomed Image" className="zoomed-image" />
+                    <button className="close-button" onClick={handleCloseClick}>
+                        Close
+                    </button>
+                </div>
+            )}
             <div className='createAddressSection fragHeading priceText'>
                 {`噴香機衛生間定時加香機廁所室內自動噴霧器清新空氣除臭芳香劑`}
 
@@ -39,8 +57,9 @@ function ProductCart() {
                         <ProductImg />
                         <ProductImg />
                     </div>
-
-                    <div className='productCartImg'>
+                    <div
+                        className='productCartImg image-thumb'
+                        onClick={handleImageClick}>
                         <PhotoLibraryIcon sx={{ fontSize: '6vw', color: Colors.tabInactive }} />
                         <div className='productCartImgSearchIcon'                        >
                             <SearchIcon sx={{ fontSize: '4vw' }} />
