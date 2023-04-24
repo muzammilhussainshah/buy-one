@@ -7,6 +7,7 @@ import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CloseIcon from '@mui/icons-material/Close';
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 
 import SearchSection from '../../components/SearchSection';
@@ -24,23 +25,17 @@ import './style.css'
 function ProductCart() {
     const [isZoomed, setIsZoomed] = useState(false);
 
-    const handleImageClick = () => {
-        setIsZoomed(true);
-    };
+    const handleImageClick = () => setIsZoomed(true);
 
-    const handleCloseClick = () => {
-        setIsZoomed(false);
-    };
+    const handleCloseClick = () => setIsZoomed(false);
+
     return (
         <>
             <SearchSection />
             {isZoomed && (
                 <div className="image-modal">
-                    {/* <PhotoLibraryIcon sx={{ fontSize: '6vw', color: Colors.tabInactive }} /> */}
                     <img src={require('../../assets/BUYONE-01.png')} alt="Zoomed Image" className="zoomed-image" />
-                    <button className="close-button" onClick={handleCloseClick}>
-                        Close
-                    </button>
+                    <CloseIcon onClick={handleCloseClick} className="close-button" />
                 </div>
             )}
             <div className='createAddressSection fragHeading priceText'>
