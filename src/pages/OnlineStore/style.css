@@ -80,7 +80,6 @@
      padding: 1.2vw;
      height: 8vw;
      width: 100%;
-     /* background-color: red; */
  }
 
  .RankingCartImgContainer {
@@ -103,10 +102,6 @@
  .rakingCartDefaultImg {
      font-size: 1.3vw !important;
      color: #898989;
- }
-
- .marginAuto {
-     /* margin: 0px auto; */
  }
 
  .rankingCartContainer {
