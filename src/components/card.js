@@ -65,11 +65,11 @@ export function Card({ disableBtn, icon, itemId, price, title, oldPrice, Product
               <p style={{ margin: 0, fontSize: '1vw' }}>{oldPrice}</p>
             </div>
             {!disableBtn &&
-              <div style={{ backgroundColor: "red", position: 'absolute', zIndex: 3, width: '150px', bottom: '9%', marginLeft: '9%' }}>
+              <div style={{ position: 'absolute', zIndex: 3, width: '6.5vw', bottom: '9%', marginLeft: '7.1vw' }}>
                 <MyButton label={
-                  <span style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', fontSize: '0.9vw' }}
+                  <span style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', fontSize: '0.7vw', padding: '.3vw 0vw' }}
                   >
-                    <LocalMallOutlinedIcon sx={{ fontSize: 'inherit' }} />
+                    <LocalMallOutlinedIcon sx={{ fontSize: '0.9vw' }} />
                     加入購物車</span>} style={{ backgroundColor: Colors.gray, width: '100%', borderWidth: '0px', height: "55%" }} />
               </div>
             }

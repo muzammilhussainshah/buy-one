@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import MoodIcon from '@mui/icons-material/Mood';
@@ -11,19 +11,67 @@ import { CustomInput } from '../ConfirmAddress/Components/Components';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { FaPhoneSquareAlt } from "react-icons/fa";
 import EmailIcon from '@mui/icons-material/Email';
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
+
 import './style.css'
-import SearchSection, { SearchBarWithBtn } from '../../components/SearchSection';
 import { StoreCategory } from './Components/Components';
-export const RankingCart = () => {
+import { cartDummyData } from '../Home/data';
+import { Cart } from '../Home/Components/Components';
+import SearchSection,
+{ SearchBarWithBtn } from '../../components/SearchSection';
+
+export const RankingCart = ({ title, oldPrice, price }) => {
     return (
         <div className='RankingCartContainer'>
-            <div className='RankingCartImgContainer'></div>
-            <div className='RankingCartBodyContainer'></div>
+            <div className='RankingCartImgContainer'>
+                <PhotoLibraryIcon className='rakingCartDefaultImg' />
+            </div>
+            <div className='RankingCartBodyContainer'>
+                <p
+                    className='AddressInputTitle2 removeMargin' >{title.substring(0, 20)}</p>
+                <p style={{ margin: 0, fontWeight: '700', color: Colors.primary, fontSize: '1.5vw' }}>{price}</p>
+                <p className='fontWeightNormal ' style={{ margin: 0, fontSize: '.8vw' }}>{oldPrice}</p>
+            </div>
         </div>
     )
 }
-function OnlineStore() {
 
+
+
+export const Revise = ({ footerText, headerText, count }) => {
+    return (
+        <div className='rankingContainer addMarginY addMarginY2'>
+            <div className='rankingContainerHeader'>
+                <p className='rightPanelHeading AddressInputTitle2 priceText'>{headerText}</p>
+            </div>
+            <div className='rankingCartContainer'>
+                {count.map(() => {
+                    return (
+                        <RankingCart
+                            price={'$760.00'}
+                            oldPrice={'155人已購入'}
+                            title={'ASTM Level 3 成人三層衛生口罩(175mmx95mm) -藍色 30個獨立...包裝 30S'} />
+
+                    )
+                })}
+                <p
+                    className='AddressInputTitle2 makeAnchr marginAuto' >{footerText}</p>
+            </div>
+        </div>
+
+    )
+}
+function OnlineStore() {
+    const [totalPagesSt, setTotalPagesSt] = useState([])
+    const [selectedPageNo, setSelectedPageNo] = useState(0)
+    useEffect(() => {
+        let totalPages = Math.ceil(cartDummyData.length / 18)
+
+        setTotalPagesSt(Array.from({ length: totalPages }, (a, b) => b))
+        // const randomNumberArray = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100) + 1);
+        // console.log(Array.from({ length: totalPages }, (a, b) => b), 'Array.from({ length: totalPages })')
+        // console.log(cartDummyData.length, Math.ceil(cartDummyData.length / 18), totalPages, 'cartDummyDatacartDummyData')
+    }, [])
     return (
         <>
             <SearchSection />
@@ -32,8 +80,7 @@ function OnlineStore() {
                     <PhotoLibraryIcon className='myStoreImgIcon' />
                 </div>
                 <div style={{ display: 'flex', flex: 1, width: '100%' }}>
-                    {/* <div className='emptyStoreLeftSide  '> */}
-                    <div className='emptyStoreLeftSide  ' style={{ paddingLeft: '2vw' }}>
+                    <div className='emptyStoreLeftSide  '  >
                         EMPTY Online Store
                         <div
                             className='orderHeader'
@@ -64,14 +111,71 @@ function OnlineStore() {
                         <StoreCategory title={'Tech | 科技系列'} />
                         <StoreCategory title={'Design | 設計系列'} />
                         <StoreCategory title={'Outdoor | 戶外系列'} />
-                        <div className='rankingContainer addMarginY addMarginY2'>
-                            <div className='rankingContainerHeader'>
-                                <p className='rightPanelHeading AddressInputTitle2 priceText'>{`本店推薦`}</p>
-                            </div>
-                            <RankingCart />
-                        </div>
+                        <Revise footerText='查看更多' count={Array.from({ length: 4 },)} headerText="本店推薦" />
+                        <Revise footerText='查看更多' count={Array.from({ length: 6 },)} headerText="商品排行榜" />
                     </div>
                     <div className='emptyStoreRightSide'>
+                        <div className='createAddressSection starCardContainer' style={{ margin: '0px' }}>
+                            {
+                                cartDummyData?.slice((selectedPageNo) * 18, (selectedPageNo + 1) * 18)?.map((item) => {
+                                    const { id, icon, title, ProductName, price, oldPrice } = item
+                                    return (
+                                        <Cart
+                                            title={title}
+                                            icon={icon}
+                                            ProductName={ProductName}
+                                            price={price}
+                                            oldPrice={oldPrice}
+                                            disableBtn
+                                        />
+                                    )
+                                })
+                            }
+                            <div className='cartPaginationContainer  '>
+                                <div style={{ backgroundColor: 'pink' }}>
+                                    <MyButton
+                                        onClick={() => { if (selectedPageNo > 0) setSelectedPageNo(selectedPageNo - 1) }}
+                                        label='上一頁'
+                                        className={'confirmationBtn'}
+                                    />
+                                    <MyButton label={selectedPageNo} className={'pageNumber'} />
+                                    <MyButton
+                                        onClick={() => { if (selectedPageNo < totalPagesSt?.length - 1) setSelectedPageNo(selectedPageNo + 1) }}
+                                        label='下一頁'
+                                        className={'confirmationBtn'} />
+
+                                </div>
+                                <div
+                                    className='pageNumbersContainer'   >
+
+                                    {totalPagesSt?.length && totalPagesSt.slice(
+                                        selectedPageNo < 5 ?
+                                            0 :
+                                            selectedPageNo - 4
+                                        ,
+
+                                        selectedPageNo < 5 ?
+                                            9 :
+                                            selectedPageNo + 4
+
+                                    )?.map((item, index) => {
+                                        return (
+                                            <MyButton
+                                                onClick={() => { setSelectedPageNo(item) }}
+                                                label={item} className={'pageNumberBtns'} />
+
+                                        )
+                                    })}
+                                </div>
+                                {/* <MyButton label='2' className={'pageNumberBtns'} />
+                                <MyButton label='3' className={'pageNumberBtns'} />
+                                <MyButton label='4' className={'pageNumberBtns'} />
+                                <MyButton label='5' className={'pageNumberBtns'} />
+                                <MyButton label='6' className={'pageNumberBtns'} />
+                                <MyButton label='7' className={'pageNumberBtns'} />
+                                <MyButton label='8' className={'pageNumberBtns'} /> */}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
