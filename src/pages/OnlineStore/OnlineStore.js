@@ -6,8 +6,9 @@ import React, {
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import MoodIcon from '@mui/icons-material/Mood';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { FaPhoneSquareAlt } from "react-icons/fa";
 import EmailIcon from '@mui/icons-material/Email';
+import { FaPhoneSquareAlt, FaRegEdit } from "react-icons/fa";
+// import { FaRegEdit } from "react-icons/fa";
 
 import './style.css'
 import Colors from '../../styles/Colors';
@@ -22,8 +23,8 @@ import {
     StoreCategory
 } from './Components/Components';
 
-function OnlineStore() {
-
+function OnlineStore({ edit }) {
+    // console.log(edit, 'aaaaaa')
     const [totalPagesSt, setTotalPagesSt] = useState([])
     const [selectedPageNo, setSelectedPageNo] = useState(0)
 
@@ -43,12 +44,18 @@ function OnlineStore() {
 
             <div className='createAddressSection fragHeading ' style={{ padding: '1vw' }}>
 
-                <div className='myStoreImg'><PhotoLibraryIcon className='myStoreImgIcon' /></div>
+                <div className='myStoreImg'>
+                    {edit && <div />}
+                    <PhotoLibraryIcon className='myStoreImgIcon' />
+                    {edit && <div style={{ height: '90%', marginRight: "1vw" }}><FaRegEdit className="edit-icon" /></div>}
+                </div>
 
                 <div style={{ display: 'flex', flex: 1, width: '100%' }}>
 
                     <div className='emptyStoreLeftSide  '  >
-                        EMPTY Online Store
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            EMPTY Online Store{edit && <FaRegEdit className="edit-icon" />}
+                        </div>
                         <div className='orderHeader' style={{ justifyContent: 'flex-start' }}>
                             <p className='orderHeaderBtn moodIconContainer margin0 lockIconContainer'> <MoodIcon sx={{ fontSize: '1.5vw', color: 'green', }} /> </p>
                             <p className='orderHeaderBtn makeAnchr margin0'>{`customer service`}</p>
@@ -87,7 +94,7 @@ function OnlineStore() {
                     <div className='emptyStoreRightSide'>
                         <div className='createAddressSection starCardContainer' style={{ margin: '0px' }}>
 
-                            {cartDummyData?.slice((selectedPageNo) * 18, (selectedPageNo + 1) * 18)?.map(({ icon, title, ProductName, price, oldPrice }) => <Cart title={title} icon={icon} ProductName={ProductName} price={price} oldPrice={oldPrice} disableBtn />)}
+                            {cartDummyData?.slice((selectedPageNo) * 18, (selectedPageNo + 1) * 18)?.map(({ icon, title, ProductName, price, oldPrice }) => <Cart edit={edit} title={title} icon={icon} ProductName={ProductName} price={price} oldPrice={oldPrice} disableBtn />)}
 
                             <div className='cartPaginationContainer  '>
 

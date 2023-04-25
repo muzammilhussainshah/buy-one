@@ -3,7 +3,7 @@
      background-color: #f3f3f3;
      width: 100%;
      display: flex;
-     justify-content: center;
+     justify-content: space-between;
      align-items: center;
  }
 
@@ -13,7 +13,7 @@
  }
 
  .emptyStoreLeftSide {
-     display: flex;
+     display: inline;
      width: 100%;
      font-size: 2vw;
      padding-left: 2vw;
@@ -145,4 +145,9 @@
 
  .blueColor {
      color: blue;
+ }
+
+ .edit-icon {
+     font-size: 1.5vw;
+     color: #2e58a6;
  }

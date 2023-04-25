@@ -16,22 +16,29 @@ import EditProfile from "./pages/EditProfile/EditProfile";
 import OnlineStore from "./pages/OnlineStore/OnlineStore";
 
 function App() {
+ 
   const location = useLocation();
-  console.log(location, 'locationlocation')
+ 
   return (
-    <div style={{ backgroundColor: Colors.bg }}>
+ 
+ <div style={{ backgroundColor: Colors.bg }}>
+ 
       <Header />
+ 
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/ConfirmAddress" element={<ConfirmAddress />}></Route>
         <Route path="/ShoppingCart" element={<ShoppingCart />}></Route>
         <Route path="/WishList" element={<WishList />}></Route>
         <Route path="/ProductCart" element={<ProductCart />}></Route>
-        <Route path="/EditProfile" element={<EditProfile/>}></Route>
-        <Route path="/OnlineStore" element={<OnlineStore/>}></Route>
+        <Route path="/EditProfile" element={<EditProfile />}></Route>
+        <Route path="/OnlineStore" element={<OnlineStore />}></Route>
+        <Route path="/OnlineStoreEdit" element={<OnlineStore edit={true} />}></Route>
       </Routes>
       {/* <Home /> */}
+ 
       <Footer location={location} />
+ 
     </div>
   );
 }

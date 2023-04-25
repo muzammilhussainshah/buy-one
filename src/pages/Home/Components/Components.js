@@ -1,14 +1,17 @@
 import React from 'react';
 
+import { FaRegEdit } from "react-icons/fa";
+
 import Colors from '../../../styles/Colors';
 import { bannerSection } from '../styles';
 import Slider from 'react-slick';
 
-export const Cart = ({ disableBtn, icon, title, ProductName, price, oldPrice }) => {
+export const Cart = ({ disableBtn, icon, title, ProductName, price, edit, oldPrice }) => {
     return (
         <div
             className="cartHover"
             style={{ height: '19vw', width: '14vw', padding: '.5vw', borderRadius: '1vw', display: "flex", flexDirection: 'column', margin: '2%' }}>
+            {edit && <FaRegEdit className="edit-icon " style={{ position: 'absolute', marginLeft: '11.5%' }} />}
             <div style={{ display: "flex", flex: 7, overflow: 'hidden' }}>
                 <img src={icon} alt="My Image" style={{ height: '100%', width: "100%", }} />
             </div>
