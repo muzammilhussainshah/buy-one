@@ -118,7 +118,7 @@ function OnlineStore() {
                         <div className='createAddressSection starCardContainer' style={{ margin: '0px' }}>
                             {
                                 cartDummyData?.slice((selectedPageNo) * 18, (selectedPageNo + 1) * 18)?.map((item) => {
-                                    const { id, icon, title, ProductName, price, oldPrice } = item
+                                    const { icon, title, ProductName, price, oldPrice } = item
                                     return (
                                         <Cart
                                             title={title}
@@ -156,13 +156,13 @@ function OnlineStore() {
 
                                         selectedPageNo < 5 ?
                                             9 :
-                                            selectedPageNo + 4
+                                            selectedPageNo + 5
 
                                     )?.map((item, index) => {
                                         return (
                                             <MyButton
                                                 onClick={() => { setSelectedPageNo(item) }}
-                                                label={item} className={'pageNumberBtns'} />
+                                                label={item} className={selectedPageNo==item?'pageNumberBtns blueColor': 'pageNumberBtns'} />
 
                                         )
                                     })}

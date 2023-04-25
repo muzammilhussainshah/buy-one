@@ -156,7 +156,7 @@ function ProductCart() {
                     <div className='createAddressSection starCardContainer'>
                         {
                             cartDummyData?.map((item) => {
-                                const { id, icon, title, ProductName, price, oldPrice } = item
+                                const { icon, title, ProductName, price, oldPrice } = item
                                 return (
                                     <Cart
                                         title={title}
