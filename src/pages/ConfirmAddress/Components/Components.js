@@ -10,10 +10,21 @@ import AddIcon from '@mui/icons-material/Add';
 import MoodIcon from '@mui/icons-material/Mood';
 
 import Colors from '../../../styles/Colors';
-import '../style.css'
 import MyButton from '../../../components/MyButton';
+import '../style.css'
 
-export const CustomInput = ({ inputTitle, placeholder, multiLine, helperText, input1Style, input2Style, helperTextStyle, doubleInput, placeholder2 }) => {
+export const CustomInput = ({
+    inputTitle,
+    placeholder,
+    multiLine,
+    icon,
+    helperText,
+    input1Style,
+    input2Style,
+    helperTextStyle,
+    doubleInput,
+    placeholder2 }) => {
+
     const [text, setText] = useState("");
 
     const handleChange = (event) => setText(event.target.value);
@@ -36,7 +47,17 @@ export const CustomInput = ({ inputTitle, placeholder, multiLine, helperText, in
                             placeholder={placeholder2} />
                     </div>
                     :
-                    <OutlinedInput className='inputForm' placeholder={placeholder} />
+                    icon ?
+                        <div style={{ display: 'flex' }}>
+                            <div className='inputIconContainer'>
+                                {icon}
+                            </div>
+                            <div className='inputIconRightContainer'>
+                                <OutlinedInput className='inputForm' placeholder={placeholder} />
+                            </div>
+                        </div>
+                        :
+                        <OutlinedInput className='inputForm' placeholder={placeholder} />
             }
             {helperText && <p className={helperTextStyle}>{helperText}</p>}
         </div>

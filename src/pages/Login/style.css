@@ -1,0 +1,99 @@
+ .logInPageContainer {
+     height: 37vw;
+     background-color: #f3f3f3;
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .logInLeftSide {
+     height: 100%;
+     width: 65%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .logInRightSide {
+     width: 34%;
+     height: 70%;
+     margin: 0px 3vw;
+     border: .1vw solid black;
+     display: inline;
+     background-color: white;
+ }
+
+ .loginFormButtons:hover {
+     color: #2e58a6;
+     border-bottom: .2vw solid #2e58a6;
+ }
+
+ .selectedLoginButton {
+     border: 0px;
+     margin: 1.5vw;
+     margin-bottom: 0px;
+     cursor: pointer;
+     background-color: transparent;
+     font-size: 1.2vw;
+     font-weight: bold;
+     color: #2e58a6;
+     border-bottom: .2vw solid #2e58a6;
+ }
+
+ .loginFormButtons {
+     border: 0px;
+     margin: 1.5vw;
+     margin-bottom: 0px;
+     cursor: pointer;
+     background-color: transparent;
+     font-size: 1.2vw;
+     font-weight: bold;
+ }
+
+ .loginFooterButtons {
+     background-color: transparent;
+     margin: 0px 1vw;
+     height: 3vw;
+     color: black;
+     padding: 0;
+ }
+
+ .loginBtnContainer {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+ }
+
+ .inputIconContainer {
+     width: 15%;
+     border: 1px solid #c4c4c4;
+     border-right: 0px solid black;
+     height: 3.5vw;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: #DBDBDB;
+ }
+
+ .inputIconRightContainer {
+     width: 85%;
+     height: 3.5vw;
+     display: flex;
+     align-items: center;
+ }
+
+ .loginInputIcons {
+     color: #FFFFFF;
+     font-size: 2.5vw !important;
+ }
+
+ .loginInputPasswordIcons {
+     color: #FFFFFF;
+     font-size: 1.8vw !important;
+ }
+
+ .logInContainer {
+     padding: 1vw;
+     border: 0px solid black;
+ }

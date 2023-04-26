@@ -7,8 +7,10 @@ import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import MoodIcon from '@mui/icons-material/Mood';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';
-import { FaPhoneSquareAlt, FaRegEdit } from "react-icons/fa";
-// import { FaRegEdit } from "react-icons/fa";
+import {
+    FaPhoneSquareAlt,
+    FaRegEdit
+} from "react-icons/fa";
 
 import './style.css'
 import Colors from '../../styles/Colors';
@@ -24,7 +26,7 @@ import {
 } from './Components/Components';
 
 function OnlineStore({ edit }) {
-    // console.log(edit, 'aaaaaa')
+
     const [totalPagesSt, setTotalPagesSt] = useState([])
     const [selectedPageNo, setSelectedPageNo] = useState(0)
 
@@ -45,8 +47,9 @@ function OnlineStore({ edit }) {
             <div className='createAddressSection fragHeading ' style={{ padding: '1vw' }}>
 
                 <div className='myStoreImg'>
-                    {edit && <div />}
+                    {<div />}
                     <PhotoLibraryIcon className='myStoreImgIcon' />
+                    {!edit && <div />}
                     {edit && <div style={{ height: '90%', marginRight: "1vw" }}><FaRegEdit className="edit-icon" /></div>}
                 </div>
 
