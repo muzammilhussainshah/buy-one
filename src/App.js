@@ -15,6 +15,7 @@ import ProductCart from "./pages/ProductCart/ProductCart";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import OnlineStore from "./pages/OnlineStore/OnlineStore";
 import Login from "./pages/Login/Login";
+import ContactUs from "./pages/ContactUs/ContactUs";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/OnlineStore" element={<OnlineStore />}></Route>
         <Route path="/OnlineStoreEdit" element={<OnlineStore edit={true} />}></Route>
         <Route path="/Login" element={<Login />}></Route>
+        <Route path="/ContactUs" element={<ContactUs />}></Route>
       </Routes>
       {/* <Home /> */}
 
