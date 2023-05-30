@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2e282b6d.css",
+    "main.js": "/static/js/main.575561fe.js",
+    "static/js/787.78752384.chunk.js": "/static/js/787.78752384.chunk.js",
+    "static/media/PRODUCTIMG.png": "/static/media/PRODUCTIMG.e6f492edfbc9b5ff510d.png",
+    "static/media/Mask Group 1.png": "/static/media/Mask Group 1.90d71a916e25c7e5f812.png",
+    "static/media/Group 399.png": "/static/media/Group 399.7abdb9ac7cd7a8e968e8.png",
+    "static/media/logo.JPG": "/static/media/logo.b662518e9d25aa24b233.JPG",
+    "static/media/E2-UN1.png": "/static/media/E2-UN1.d403955c75bc12c981ad.png",
+    "index.html": "/index.html",
+    "main.2e282b6d.css.map": "/static/css/main.2e282b6d.css.map",
+    "main.575561fe.js.map": "/static/js/main.575561fe.js.map",
+    "787.78752384.chunk.js.map": "/static/js/787.78752384.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2e282b6d.css",
+    "static/js/main.575561fe.js"
+  ]
+}
