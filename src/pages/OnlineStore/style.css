@@ -1,0 +1,153 @@
+ .myStoreImg {
+     height: 15vw;
+     background-color: #f3f3f3;
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .myStoreImgIcon {
+     font-size: 10vw !important;
+     color: #DBDBDB;
+ }
+
+ .emptyStoreLeftSide {
+     display: inline;
+     width: 100%;
+     font-size: 2vw;
+     padding-left: 2vw;
+     flex-direction: column;
+     font-weight: bold;
+     flex: 3.5;
+ }
+
+ .emptyStoreRightSide {
+     display: flex;
+     width: 100%;
+     flex: 6.5;
+ }
+
+ .emptyStoreTitleText {
+     font-weight: bold;
+     display: flex;
+     width: 85%;
+     align-items: center;
+     font-size: 1.1vw;
+     margin: .5vw 0px;
+ }
+
+ .OnlineStoreLeftSideSearchContainer {
+     height: 6.3vw;
+     overflow: hidden;
+     width: 85%;
+ }
+
+ .StoreCategoryContainer {
+     margin: 0.5vw 0px;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     width: 100%;
+ }
+
+ .StoreCategoryIcon {
+     font-size: 1.5vw !important;
+     margin: 0px .2vw;
+ }
+
+ .rankingContainer {
+     border: 1px solid black;
+     /* height: 50.500651041666664vw; */
+
+     width: 85%;
+ }
+
+ .rankingContainerHeader {
+     height: 2.5vw;
+     display: flex;
+     align-items: center;
+     color: #FFFFFF;
+     background-color: #2e58a6;
+ }
+
+ .addMarginY2 {
+     margin-top: 2vw !important;
+ }
+
+ .RankingCartContainer {
+     display: flex;
+     padding: 1.2vw;
+     height: 8vw;
+     width: 100%;
+ }
+
+ .RankingCartImgContainer {
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex: 2.7;
+     background-color: #f3f3f3;
+ }
+
+ .RankingCartBodyContainer {
+     display: flex;
+     flex: 7.3;
+     flex-direction: column;
+     justify-content: space-evenly;
+     padding: 0px .5vw;
+ }
+
+ .rakingCartDefaultImg {
+     font-size: 1.3vw !important;
+     color: #898989;
+ }
+
+ .rankingCartContainer {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .cartPaginationContainer {
+     display: flex;
+     align-items: center;
+     width: 100%;
+ }
+
+ .pageNumberBtns {
+     border: 0px;
+     margin: 0px;
+     cursor: pointer;
+     background-color: transparent;
+     font-size: 1vw;
+ }
+
+ .pageNumberBtns:hover {
+     color: #2e58a6;
+ }
+
+ .pageNumber {
+     height: 4vw;
+     cursor: pointer;
+     border: 1px solid black;
+     padding: 0px 1.5vw;
+     font-size: 1vw;
+ }
+
+ .pageNumbersContainer {
+     overflow: hidden;
+     display: flex;
+     width: 50%;
+     justify-content: space-evenly;
+ }
+
+ .blueColor {
+     color: blue;
+ }
+
+ .edit-icon {
+     font-size: 1.5vw;
+     color: #2e58a6;
+ }

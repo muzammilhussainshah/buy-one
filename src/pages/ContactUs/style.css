@@ -1,0 +1,36 @@
+.ContactUsHeading {
+    font-size: 4vw;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.phoneSupportContainer {
+    display: flex;
+    width: 85%;
+    margin: auto;
+    margin-top: 8vw;
+}
+
+.phoneSupportTitle {
+    width: 60%;
+}
+
+.contactContainer {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.customerContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.regionMsg {
+    margin-right: 0px;
+    margin-left: 0px;
+    width: 58%;
+}

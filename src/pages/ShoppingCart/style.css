@@ -1,0 +1,41 @@
+.cartHeading {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: auto;
+    align-items: center;
+}
+
+.allProduct {
+    margin: 0px 2vw;
+}
+
+.totalCostPrice {
+    font-size: 2.2vw;
+    margin: 0px;
+    color: #2E58A6;
+    text-align: center;
+    font-weight: 600;
+}
+
+.removeFontWeight {
+    margin: 0px;
+    font-size: 1vw;
+    font-weight: normal;
+}
+
+.marginAdd {
+    margin: 2vw
+}
+
+.fontWeightNormal {
+    font-weight: normal !important;
+}
+
+.marginAdd1 {
+    margin: 0px 1vw;
+}
+.productImgCheckBox {
+    height: 80%;
+    margin: 1vw;
+}

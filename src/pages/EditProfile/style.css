@@ -1,0 +1,76 @@
+ .profileSection {
+     width: 100%;
+     display: flex;
+ }
+
+ .profileContainer {
+     background-color: #F3F3F3;
+     height: 12vw;
+     width: 12vw;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .profileBodyContainer {
+     padding: 0px 1vw;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+ }
+
+ .width90 {
+     width: 92%;
+     margin: 2.3vw 0px;
+ }
+
+ .margin0 {
+     margin: 0px;
+ }
+
+ .editProfileContainer {
+     display: flex;
+     height: auto;
+     border-bottom-width: 0px;
+ }
+
+ .publicText {
+     margin: 2vw 0vw;
+ }
+
+ .profilePictureText {
+     margin-bottom: .5vw;
+ }
+
+ .profilePic {
+     height: 100%;
+     width: 100%;
+     object-fit: fill;
+ }
+
+ .lockIconContainer {
+     display: flex !important;
+     align-items: center !important;
+ }
+
+ .lockIconContainer2 {
+     font-size: inherit !important;
+     margin: 0px .3vw;
+ }
+
+ .saveChangesBtn {
+     justify-content: flex-end;
+     width: 90%;
+ }
+
+ .changePasswordContainer {
+     width: 50%;
+     padding-left: 4vw;
+ }
+
+ .saveChanges {
+     justify-content: flex-end;
+     width: 90%;
+     margin: 2.5vw 0px;
+ }
